@@ -11,6 +11,8 @@
 		8D09A69028AAA5700014E075 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A68F28AAA5700014E075 /* ContentView.swift */; };
 		8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69128AAA5710014E075 /* Assets.xcassets */; };
 		8D09A69528AAA5710014E075 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69428AAA5710014E075 /* Preview Assets.xcassets */; };
+		8DB6ED4A28ABADBF00DF0DB5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */; };
+		8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		8D09A68F28AAA5700014E075 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D09A69128AAA5710014E075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D09A69428AAA5710014E075 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoketView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */,
 				8D09A68F28AAA5700014E075 /* ContentView.swift */,
+				8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */,
+				8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */,
 				8D09A69128AAA5710014E075 /* Assets.xcassets */,
 				8D09A69328AAA5710014E075 /* Preview Content */,
 			);
@@ -139,6 +145,8 @@
 			files = (
 				8D09A69028AAA5700014E075 /* ContentView.swift in Sources */,
 				8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */,
+				8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */,
+				8DB6ED4A28ABADBF00DF0DB5 /* LaunchScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

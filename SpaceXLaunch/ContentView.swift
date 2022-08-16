@@ -9,8 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+            TabView {
+                NavigationView {
+                    RoketView()
+//                        .frame(height: screen.height)
+                }
+            }
+            .ignoresSafeArea()
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
 }
 
@@ -19,3 +26,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

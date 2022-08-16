@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+var screen = UIScreen.main.bounds
+
 @main
 struct SpaceXLaunchApp: App {
     var body: some Scene {
