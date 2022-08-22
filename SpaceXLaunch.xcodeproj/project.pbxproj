@@ -11,8 +11,13 @@
 		8D09A69028AAA5700014E075 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A68F28AAA5700014E075 /* ContentView.swift */; };
 		8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69128AAA5710014E075 /* Assets.xcassets */; };
 		8D09A69528AAA5710014E075 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69428AAA5710014E075 /* Preview Assets.xcassets */; };
+		8D4568BD28ABC9E300838891 /* RoketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4568BC28ABC9E300838891 /* RoketModel.swift */; };
+		8D4568BF28ABD87000838891 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4568BE28ABD87000838891 /* APIServices.swift */; };
+		8D86973128AD026400082DA7 /* RoketViewModelApi2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D86973028AD026400082DA7 /* RoketViewModelApi2.swift */; };
+		8D86973828AD4D3000082DA7 /* AsyncImageJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D86973728AD4D3000082DA7 /* AsyncImageJSON.swift */; };
 		8DB6ED4A28ABADBF00DF0DB5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */; };
 		8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */; };
+		8DD0FF6C28AE48F600629FD8 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0FF6B28AE48F600629FD8 /* TabViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,8 +26,13 @@
 		8D09A68F28AAA5700014E075 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D09A69128AAA5710014E075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D09A69428AAA5710014E075 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8D4568BC28ABC9E300838891 /* RoketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoketModel.swift; sourceTree = "<group>"; };
+		8D4568BE28ABD87000838891 /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
+		8D86973028AD026400082DA7 /* RoketViewModelApi2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoketViewModelApi2.swift; sourceTree = "<group>"; };
+		8D86973728AD4D3000082DA7 /* AsyncImageJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageJSON.swift; sourceTree = "<group>"; };
 		8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoketView.swift; sourceTree = "<group>"; };
+		8DD0FF6B28AE48F600629FD8 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				8D09A68C28AAA5700014E075 /* SpaceXLaunch */,
+				8D09A69328AAA5710014E075 /* Preview Content */,
 				8D09A68B28AAA5700014E075 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,10 +68,12 @@
 			children = (
 				8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */,
 				8D09A68F28AAA5700014E075 /* ContentView.swift */,
-				8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */,
-				8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */,
+				8D86973628AD434100082DA7 /* Roket */,
+				8D86973028AD026400082DA7 /* RoketViewModelApi2.swift */,
+				8DD0FF6B28AE48F600629FD8 /* TabViewModel.swift */,
+				8DB6ED4D28ABC99B00DF0DB5 /* Model */,
 				8D09A69128AAA5710014E075 /* Assets.xcassets */,
-				8D09A69328AAA5710014E075 /* Preview Content */,
+				8D4568BE28ABD87000838891 /* APIServices.swift */,
 			);
 			path = SpaceXLaunch;
 			sourceTree = "<group>";
@@ -71,6 +84,24 @@
 				8D09A69428AAA5710014E075 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8D86973628AD434100082DA7 /* Roket */ = {
+			isa = PBXGroup;
+			children = (
+				8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */,
+				8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */,
+				8D86973728AD4D3000082DA7 /* AsyncImageJSON.swift */,
+			);
+			path = Roket;
+			sourceTree = "<group>";
+		};
+		8DB6ED4D28ABC99B00DF0DB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D4568BC28ABC9E300838891 /* RoketModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,9 +174,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D86973128AD026400082DA7 /* RoketViewModelApi2.swift in Sources */,
+				8D86973828AD4D3000082DA7 /* AsyncImageJSON.swift in Sources */,
+				8D4568BD28ABC9E300838891 /* RoketModel.swift in Sources */,
 				8D09A69028AAA5700014E075 /* ContentView.swift in Sources */,
+				8D4568BF28ABD87000838891 /* APIServices.swift in Sources */,
 				8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */,
 				8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */,
+				8DD0FF6C28AE48F600629FD8 /* TabViewModel.swift in Sources */,
 				8DB6ED4A28ABADBF00DF0DB5 /* LaunchScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

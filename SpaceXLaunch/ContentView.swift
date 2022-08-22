@@ -8,18 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @MainActor @StateObject var viewModel = RoketViewModel()
+    @State var selectedTab: String = "Falcon 1"
+    @State private var update = UUID()
+    
     var body: some View {
-            TabView {
-                NavigationView {
-                    RoketView()
-//                        .frame(height: screen.height)
-                }
+        
+        TabView {
+            
+                ForEach(viewModel.roketArray, id: \.id) { model in
+                    RoketView(model: model)
+                        .tag(String(model.name))
+
             }
+            
+        }        .tabViewStyle(.page)
+            .background(.black)
             .ignoresSafeArea()
-            .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
+//                .id(selectedTab)
+            .onAppear {
+                viewModel.fetch()
+            }
     }
+    
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
