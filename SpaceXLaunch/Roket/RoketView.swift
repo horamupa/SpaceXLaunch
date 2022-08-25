@@ -4,7 +4,7 @@ import SwiftUI
 
 struct RoketView: View {
     
-
+    @EnvironmentObject var viewModel: RoketViewModel
     @State var model: RoketModel
     
     var body: some View {
@@ -12,7 +12,7 @@ struct RoketView: View {
             ScrollView {
                 VStack(spacing: -20) {
                     
-//                    AsyncImage(url: URL(string: viewModel.isFetched ? "\(viewModel.roketArray[0].flickrImages[0])" : "https://hws.dev/img/logo.png")) { image in
+//                    AsyncImage(url: URL(string: "\(model.flickrImages[1])")) { image in
 //                                image.resizable().scaledToFit()
 //                            }
 //                                placeholder: {
@@ -26,6 +26,14 @@ struct RoketView: View {
                         .ignoresSafeArea()
                     
                     VStack {
+                        Button {
+                            print(viewModel.preferenceArray)
+                            print(viewModel.isMetricHeight)
+                        } label: {
+                            Text("Print preference")
+                                .foregroundColor(.white)
+                        }
+
                         Title(name: model.name)
                         
                         HScroll(model: model)
@@ -51,7 +59,7 @@ struct RoketView: View {
                     .foregroundColor(.white)
                     .frame(width: screen.width)
                     .background(.black)
-                    .cornerRadius(20)
+                    .cornerRadius(30)
                 }
                 .frame(height: screen.height)
             }
@@ -64,24 +72,25 @@ struct RoketView: View {
 }
 
 
-struct RoketView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoketView(model: RoketModel.share)
-    }
-}
+//struct RoketView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RoketView(model: RoketModel.share)
+//    }
+//}
 
 
 struct Title: View {
     
     @State var name: String
+    @EnvironmentObject var viewModel: RoketViewModel
     
     var body: some View {
         HStack {
             Text(name)
-                .bold()
+                .font(.custom("Lab Grotesque Medium", size: 24))
             Spacer()
             Button {
-                print("go settings")
+                viewModel.isPreference.toggle()
             } label: {
                 Image(systemName: "gearshape")
             }
@@ -100,21 +109,32 @@ struct HScrollInfo: View {
     
     @State var textUp: Int
     @State var textDown: String
-    @State var inMetric: String
     
     var body: some View {
-        VStack(spacing: 5) {
-            Text("\(textUp)")
-                .bold()
-            HStack {
-                Text(textDown)
-                    .foregroundColor(.secondary)
-                Text(inMetric)
+        ZStack {
+            Color.black
+            RoundedRectangle(cornerRadius: 32)
+                .fill(Color(#colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)))
+                .frame(width: 96, height: 96)
+                
+            .overlay {
+                VStack(spacing: 5) {
+                    Text("\(textUp)")
+                        .font(.custom("Lab Grotesque Bold", size: 16))
+                        .foregroundColor(Color(.white))
+                        .lineSpacing(16)
+                        .multilineTextAlignment(.center)
+                    HStack {
+                        Text("\(textDown)")
+                            .font(.custom("Lab Grotesque Regular", size: 14))
+                            .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                            .lineSpacing(16)
+                            .multilineTextAlignment(.center)
+                    }
+                }
             }
+            
         }
-        .padding()
-        .background(.thinMaterial)
-        .cornerRadius(35)
     }
 }
 
@@ -123,18 +143,29 @@ struct HScrollInfo: View {
 struct HScroll: View {
     
     @State var model: RoketModel
+
+    @EnvironmentObject var viewModel: RoketViewModel
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                HScrollInfo(textUp: Int(model.height.meters!), textDown: "Высота", inMetric: "met")
-                HScrollInfo(textUp: Int(model.diameter.meters!), textDown: "Диаметр", inMetric: "met")
-                HScrollInfo(textUp: model.mass.kg, textDown: "Масса", inMetric: "kg")
-                HScrollInfo(textUp: model.payloadWeights[0].kg , textDown: "Полезная нагрузка", inMetric: "met")
+                Button {
+                    print(viewModel.preferenceArray)
+                    print(viewModel.isMetricHeight)
+                } label: {
+                    Text("Print preference")
+                        .foregroundColor(.white)
+                }
+                HScrollInfo(textUp: viewModel.isMetricHeight ? Int(model.height.meters!) : Int(model.height.feet!), textDown: "Высота, \(viewModel.isMetricHeight ? "m" : "ft")")
+//                HScrollInfo(textUp: isMetric[1] ? Int(model.diameter.meters!) : Int(model.diameter.feet!), textDown: "Диаметр, \(isMetric[1] ? "m" : "ft")")
+//                HScrollInfo(textUp: isMetric[2] ? model.mass.kg : model.mass.lb, textDown: "Масса, \(isMetric[2] ? "kg" : "lb")")
+//                HScrollInfo(textUp: isMetric[3] ? model.payloadWeights[0].kg : model.payloadWeights[0].lb , textDown: "Полезная нагрузка, \(isMetric[3] ? "kg" : "lb")")
             }
+            .background(.black)
             .padding()
         }
-        .frame(minHeight: 100)
+        .background(.black)
+//        .frame(minHeight: 100)
     }
 }
 
@@ -174,7 +205,7 @@ struct MainInfo: View {
         Spacer()
         VStack(alignment: .leading, spacing: 15) {
             Text("ПЕРВАЯ СТУПЕНЬ")
-                .bold()
+                .font(.custom("Lab Grotesque Bold", size: 16))
             RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.firstStage.engines)")
             RegularInfoView(textLeft: "Количество топлива", textRight: "\(model.firstStage.fuelAmountTons) ton")
             RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "\(model.firstStage.burnTimeSEC ?? 100)")
@@ -185,7 +216,7 @@ struct MainInfo: View {
         Spacer()
         VStack(alignment: .leading, spacing: 15) {
             Text("ВТОРАЯ СТУПЕНЬ")
-                .bold()
+                .font(.custom("Lab Grotesque Bold", size: 16))
             RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.secondStage.engines)")
             RegularInfoView(textLeft: "Количество топлива", textRight: "\(model.secondStage.fuelAmountTons) ton")
 //            RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "go")

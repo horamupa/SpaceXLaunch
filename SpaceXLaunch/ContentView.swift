@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @MainActor @StateObject var viewModel = RoketViewModel()
+    
     @State var selectedTab: String = "Falcon 1"
     @State private var update = UUID()
     
@@ -23,14 +24,18 @@ struct ContentView: View {
 
             }
             
-        }        .tabViewStyle(.page)
+        }
+            .tabViewStyle(.page)
             .background(.black)
             .ignoresSafeArea()
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-//                .id(selectedTab)
+            .sheet(isPresented: $viewModel.isPreference) {
+                    Preference(viewModel: viewModel)
+            }
             .onAppear {
                 viewModel.fetch()
             }
+            .environmentObject(viewModel)
     }
     
 }

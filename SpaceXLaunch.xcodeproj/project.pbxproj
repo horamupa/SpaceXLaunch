@@ -18,6 +18,7 @@
 		8DB6ED4A28ABADBF00DF0DB5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */; };
 		8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */; };
 		8DD0FF6C28AE48F600629FD8 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0FF6B28AE48F600629FD8 /* TabViewModel.swift */; };
+		8DDEAE7828B7950000B5CD73 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDEAE7728B7950000B5CD73 /* Preference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoketView.swift; sourceTree = "<group>"; };
 		8DD0FF6B28AE48F600629FD8 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		8DDEAE7728B7950000B5CD73 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */,
 				8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */,
 				8D86973728AD4D3000082DA7 /* AsyncImageJSON.swift */,
+				8DDEAE7728B7950000B5CD73 /* Preference.swift */,
 			);
 			path = Roket;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DDEAE7828B7950000B5CD73 /* Preference.swift in Sources */,
 				8D86973128AD026400082DA7 /* RoketViewModelApi2.swift in Sources */,
 				8D86973828AD4D3000082DA7 /* AsyncImageJSON.swift in Sources */,
 				8D4568BD28ABC9E300838891 /* RoketModel.swift in Sources */,

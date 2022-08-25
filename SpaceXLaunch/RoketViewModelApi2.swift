@@ -13,8 +13,13 @@ class RoketViewModel: ObservableObject {
     
     @Published var isFetched: Bool = false
     @Published var roketArray = [rroket]
-    @Published var isMetric: Bool = true
+    @Published var isMetricHeight: Bool = true
+    @Published var isMetricDiametr: Bool = true
+    @Published var isMetricMass: Bool = true
+    @Published var isMetricUsefulWeight: Bool = true
     @Published var roket1 = RoketModel.share
+    @Published var isPreference: Bool = false
+    @Published var preferenceArray = [Bool]()
     
     static var rroket = RoketModel.share
     
@@ -39,6 +44,7 @@ class RoketViewModel: ObservableObject {
                     self!.isFetched = true
                     self!.roket1 = self!.roketArray[0]
                     print(self!.roket1.name)
+                    
                 }
             } catch {
                 print(error)
@@ -47,5 +53,7 @@ class RoketViewModel: ObservableObject {
         task.resume()
         print(roketArray.count)
     }
-    init() { }
+    init() {
+        preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
+    }
 }
