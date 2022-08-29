@@ -5,7 +5,7 @@ import SwiftUI
 struct RoketView: View {
     
     @EnvironmentObject var viewModel: RoketViewModel
-    @State var model: RoketModel
+    var model: RoketModel
     
     var body: some View {
         VStack {
@@ -26,13 +26,6 @@ struct RoketView: View {
                         .ignoresSafeArea()
                     
                     VStack {
-                        Button {
-                            print(viewModel.preferenceArray)
-                            print(viewModel.isMetricHeight)
-                        } label: {
-                            Text("Print preference")
-                                .foregroundColor(.white)
-                        }
 
                         Title(name: model.name)
                         
@@ -72,11 +65,16 @@ struct RoketView: View {
 }
 
 
-//struct RoketView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoketView(model: RoketModel.share)
-//    }
-//}
+struct RoketView_Previews: PreviewProvider {
+    
+    static var viewModel = RoketViewModel()
+    var model = RoketModel.share
+    static var previews: some View {
+        RoketView(model: RoketModel.share)
+            .environmentObject(viewModel)
+    }
+        
+}
 
 
 struct Title: View {
@@ -107,8 +105,8 @@ struct Title: View {
 
 struct HScrollInfo: View {
     
-    @State var textUp: Int
-    @State var textDown: String
+    var textUp: Int
+    var textDown: String
     
     var body: some View {
         ZStack {
@@ -128,7 +126,6 @@ struct HScrollInfo: View {
                         Text("\(textDown)")
                             .font(.custom("Lab Grotesque Regular", size: 14))
                             .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
-                            .lineSpacing(16)
                             .multilineTextAlignment(.center)
                     }
                 }
@@ -142,30 +139,22 @@ struct HScrollInfo: View {
 
 struct HScroll: View {
     
-    @State var model: RoketModel
+    var model: RoketModel
 
     @EnvironmentObject var viewModel: RoketViewModel
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                Button {
-                    print(viewModel.preferenceArray)
-                    print(viewModel.isMetricHeight)
-                } label: {
-                    Text("Print preference")
-                        .foregroundColor(.white)
-                }
-                HScrollInfo(textUp: viewModel.isMetricHeight ? Int(model.height.meters!) : Int(model.height.feet!), textDown: "Высота, \(viewModel.isMetricHeight ? "m" : "ft")")
-//                HScrollInfo(textUp: isMetric[1] ? Int(model.diameter.meters!) : Int(model.diameter.feet!), textDown: "Диаметр, \(isMetric[1] ? "m" : "ft")")
-//                HScrollInfo(textUp: isMetric[2] ? model.mass.kg : model.mass.lb, textDown: "Масса, \(isMetric[2] ? "kg" : "lb")")
-//                HScrollInfo(textUp: isMetric[3] ? model.payloadWeights[0].kg : model.payloadWeights[0].lb , textDown: "Полезная нагрузка, \(isMetric[3] ? "kg" : "lb")")
+                HScrollInfo(textUp: viewModel.preferenceArray[0] ? Int(model.height.meters!) : Int(model.height.feet!), textDown: "Высота, \(viewModel.preferenceArray[0] ? "m" : "ft")")
+                HScrollInfo(textUp: viewModel.preferenceArray[1] ? Int(model.diameter.meters!) : Int(model.diameter.feet!), textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "m" : "ft")")
+                HScrollInfo(textUp: viewModel.preferenceArray[2] ? model.mass.kg : model.mass.lb, textDown: "Масса, \(viewModel.preferenceArray[2] ? "kg" : "lb")")
+                HScrollInfo(textUp: viewModel.preferenceArray[3] ? model.payloadWeights[0].kg : model.payloadWeights[0].lb , textDown: "Полезная нагрузка, \(viewModel.preferenceArray[3] ? "kg" : "lb")")
             }
             .background(.black)
             .padding()
         }
         .background(.black)
-//        .frame(minHeight: 100)
     }
 }
 

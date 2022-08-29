@@ -48,7 +48,7 @@ struct RoketModel: Codable, Identifiable, Hashable {
         case id
     }
     
-    init(id: String, images: [String], name: String, firstStage: FirstStage, height: Diameter, diameter: Diameter, mass: Mass, payloadWeights: [PayloadWeight], firstFlight: String, country: String, company: String, costPerLaunch: Int, secondStage: SecondStage) {
+    init(id: String = "Rocket", images: [String] = [""], name: String = "Roket", firstStage: FirstStage = FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), height: Diameter, diameter: Diameter, mass: Mass, payloadWeights: [PayloadWeight], firstFlight: String, country: String, company: String, costPerLaunch: Int, secondStage: SecondStage) {
         self.id = id
         self.flickrImages = images
         self.name = name

@@ -32,9 +32,6 @@ struct ContentView: View {
             .sheet(isPresented: $viewModel.isPreference) {
                     Preference(viewModel: viewModel)
             }
-            .onAppear {
-                viewModel.fetch()
-            }
             .environmentObject(viewModel)
     }
     

@@ -19,7 +19,7 @@ class RoketViewModel: ObservableObject {
     @Published var isMetricUsefulWeight: Bool = true
     @Published var roket1 = RoketModel.share
     @Published var isPreference: Bool = false
-    @Published var preferenceArray = [Bool]()
+    @Published var preferenceArray: [Bool] = [true,true,true,true]
     
     static var rroket = RoketModel.share
     
@@ -28,22 +28,16 @@ class RoketViewModel: ObservableObject {
     
     func fetch() {
         guard let url = URL(string: RoketModel.url) else { return }
-        print("URL created")
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data, error == nil else { return }
             
             do {
                 let decoder = JSONDecoder()
-//                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let fetInfo = try decoder.decode([RoketModel].self, from: data)
-                print("fetch done")
                 DispatchQueue.main.async {
                     self!.roketArray = fetInfo
-                    print(self!.roketArray[0].flickrImages[0])
-//                    print(self!.roketArray[0].name)
                     self!.isFetched = true
                     self!.roket1 = self!.roketArray[0]
-                    print(self!.roket1.name)
                     
                 }
             } catch {
@@ -53,7 +47,26 @@ class RoketViewModel: ObservableObject {
         task.resume()
         print(roketArray.count)
     }
+    
+    func savePreference() {
+        let settings = self.preferenceArray
+        guard let encoder = try? JSONEncoder().encode(settings) else { return }
+        UserDefaults.standard.set(encoder, forKey: "save_it")
+    }
+    
+    func setPreference() {
+        guard let data = UserDefaults.standard.data(forKey: "save_it"),
+              let decodedData = try? JSONDecoder().decode([Bool].self, from: data)
+        else { return }
+        self.preferenceArray = decodedData
+    }
+    
     init() {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
+        fetch()
+        setPreference()
     }
+    
+//    init() { }
+    
 }

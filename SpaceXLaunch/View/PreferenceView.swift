@@ -13,7 +13,10 @@ struct Preference: View {
     
     @ObservedObject var viewModel: RoketViewModel
     
-    @State var togglee: Bool = false
+//    @State var isMetricHeight: Bool = true
+//    @State var isMetricDiametr: Bool = true
+//    @State var isMetricisMetricMass: Bool = true
+//    @State var isMetricUsefulWeight: Bool = true
     
     var body: some View {
         NavigationView {
@@ -21,22 +24,22 @@ struct Preference: View {
                 Color.black
                     .ignoresSafeArea()
                 VStack {
-                    Toggle(isOn: $viewModel.isMetricHeight) {
+                    Toggle(isOn: $viewModel.preferenceArray[0]) {
                                 Text("Высота")
                             }
                     .toggleStyle(.switch)
                             .padding()
-                    Toggle(isOn: $viewModel.isMetricDiametr) {
+                    Toggle(isOn: $viewModel.preferenceArray[1]) {
                                 Text("Диаметр")
                             }
                             .toggleStyle(SwitchToggleStyle())
                             .padding()
-                    Toggle(isOn: $viewModel.isMetricMass) {
+                    Toggle(isOn: $viewModel.preferenceArray[2]) {
                                 Text("Масса")
                             }
                             .toggleStyle(SwitchToggleStyle())
                             .padding()
-                    Toggle(isOn: $viewModel.isMetricUsefulWeight) {
+                    Toggle(isOn: $viewModel.preferenceArray[3]) {
                                 Text("Полезная нагрузка")
                             }
                             .toggleStyle(SwitchToggleStyle())
@@ -60,8 +63,9 @@ struct Preference: View {
                             .foregroundColor(.white)
                     }
                 }
-                
-
+            }
+            .onDisappear {
+                viewModel.savePreference()
             }
         }
         
