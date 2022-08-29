@@ -11,6 +11,20 @@
 		8D09A69028AAA5700014E075 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A68F28AAA5700014E075 /* ContentView.swift */; };
 		8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69128AAA5710014E075 /* Assets.xcassets */; };
 		8D09A69528AAA5710014E075 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69428AAA5710014E075 /* Preview Assets.xcassets */; };
+		8D0E787F28BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787128BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf */; };
+		8D0E788028BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787228BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf */; };
+		8D0E788128BCE9FD001D7371 /* LabGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787328BCE9FD001D7371 /* LabGrotesque-Bold.ttf */; };
+		8D0E788228BCE9FD001D7371 /* LabGrotesque-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787428BCE9FD001D7371 /* LabGrotesque-BlackItalic.ttf */; };
+		8D0E788328BCE9FD001D7371 /* LabGrotesque-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787528BCE9FD001D7371 /* LabGrotesque-Light.ttf */; };
+		8D0E788428BCE9FD001D7371 /* LabGrotesque-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787628BCE9FD001D7371 /* LabGrotesque-Italic.ttf */; };
+		8D0E788528BCE9FD001D7371 /* LabGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787728BCE9FD001D7371 /* LabGrotesque-Regular.ttf */; };
+		8D0E788628BCE9FD001D7371 /* LabGrotesqueMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787828BCE9FD001D7371 /* LabGrotesqueMono-Bold.ttf */; };
+		8D0E788728BCE9FD001D7371 /* LabGrotesque-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787928BCE9FD001D7371 /* LabGrotesque-BoldItalic.ttf */; };
+		8D0E788828BCE9FD001D7371 /* LabGrotesque-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787A28BCE9FD001D7371 /* LabGrotesque-Black.ttf */; };
+		8D0E788928BCE9FD001D7371 /* LabGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787B28BCE9FD001D7371 /* LabGrotesque-Medium.ttf */; };
+		8D0E788A28BCE9FD001D7371 /* LabGrotesqueMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787C28BCE9FD001D7371 /* LabGrotesqueMono.ttf */; };
+		8D0E788B28BCE9FD001D7371 /* LabGrotesque-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787D28BCE9FD001D7371 /* LabGrotesque-Thin.ttf */; };
+		8D0E788C28BCE9FD001D7371 /* LabGrotesque-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787E28BCE9FD001D7371 /* LabGrotesque-MediumItalic.ttf */; };
 		8D4568BD28ABC9E300838891 /* RoketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4568BC28ABC9E300838891 /* RoketModel.swift */; };
 		8D4568BF28ABD87000838891 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4568BE28ABD87000838891 /* APIServices.swift */; };
 		8D86973128AD026400082DA7 /* RoketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D86973028AD026400082DA7 /* RoketViewModel.swift */; };
@@ -26,6 +40,21 @@
 		8D09A68F28AAA5700014E075 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D09A69128AAA5710014E075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D09A69428AAA5710014E075 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8D0E787028BCE37C001D7371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D0E787128BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-LightItalic.ttf"; sourceTree = "<group>"; };
+		8D0E787228BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-ThinItalic.ttf"; sourceTree = "<group>"; };
+		8D0E787328BCE9FD001D7371 /* LabGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Bold.ttf"; sourceTree = "<group>"; };
+		8D0E787428BCE9FD001D7371 /* LabGrotesque-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-BlackItalic.ttf"; sourceTree = "<group>"; };
+		8D0E787528BCE9FD001D7371 /* LabGrotesque-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Light.ttf"; sourceTree = "<group>"; };
+		8D0E787628BCE9FD001D7371 /* LabGrotesque-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Italic.ttf"; sourceTree = "<group>"; };
+		8D0E787728BCE9FD001D7371 /* LabGrotesque-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Regular.ttf"; sourceTree = "<group>"; };
+		8D0E787828BCE9FD001D7371 /* LabGrotesqueMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesqueMono-Bold.ttf"; sourceTree = "<group>"; };
+		8D0E787928BCE9FD001D7371 /* LabGrotesque-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-BoldItalic.ttf"; sourceTree = "<group>"; };
+		8D0E787A28BCE9FD001D7371 /* LabGrotesque-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Black.ttf"; sourceTree = "<group>"; };
+		8D0E787B28BCE9FD001D7371 /* LabGrotesque-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Medium.ttf"; sourceTree = "<group>"; };
+		8D0E787C28BCE9FD001D7371 /* LabGrotesqueMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LabGrotesqueMono.ttf; sourceTree = "<group>"; };
+		8D0E787D28BCE9FD001D7371 /* LabGrotesque-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-Thin.ttf"; sourceTree = "<group>"; };
+		8D0E787E28BCE9FD001D7371 /* LabGrotesque-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-MediumItalic.ttf"; sourceTree = "<group>"; };
 		8D4568BC28ABC9E300838891 /* RoketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoketModel.swift; sourceTree = "<group>"; };
 		8D4568BE28ABD87000838891 /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		8D86973028AD026400082DA7 /* RoketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoketViewModel.swift; sourceTree = "<group>"; };
@@ -66,12 +95,14 @@
 		8D09A68C28AAA5700014E075 /* SpaceXLaunch */ = {
 			isa = PBXGroup;
 			children = (
+				8D0E787028BCE37C001D7371 /* Info.plist */,
 				8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */,
 				8DB6ED4D28ABC99B00DF0DB5 /* Model */,
 				8D0E786F28BCCF40001D7371 /* ViewModel */,
 				8D86973628AD434100082DA7 /* View */,
 				8D09A69128AAA5710014E075 /* Assets.xcassets */,
 				8D4568BE28ABD87000838891 /* APIServices.swift */,
+				8D0E788D28BCEA0A001D7371 /* Fonts */,
 			);
 			path = SpaceXLaunch;
 			sourceTree = "<group>";
@@ -90,6 +121,27 @@
 				8D86973028AD026400082DA7 /* RoketViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8D0E788D28BCEA0A001D7371 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8D0E787A28BCE9FD001D7371 /* LabGrotesque-Black.ttf */,
+				8D0E787428BCE9FD001D7371 /* LabGrotesque-BlackItalic.ttf */,
+				8D0E787328BCE9FD001D7371 /* LabGrotesque-Bold.ttf */,
+				8D0E787928BCE9FD001D7371 /* LabGrotesque-BoldItalic.ttf */,
+				8D0E787628BCE9FD001D7371 /* LabGrotesque-Italic.ttf */,
+				8D0E787528BCE9FD001D7371 /* LabGrotesque-Light.ttf */,
+				8D0E787128BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf */,
+				8D0E787B28BCE9FD001D7371 /* LabGrotesque-Medium.ttf */,
+				8D0E787E28BCE9FD001D7371 /* LabGrotesque-MediumItalic.ttf */,
+				8D0E787728BCE9FD001D7371 /* LabGrotesque-Regular.ttf */,
+				8D0E787D28BCE9FD001D7371 /* LabGrotesque-Thin.ttf */,
+				8D0E787228BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf */,
+				8D0E787828BCE9FD001D7371 /* LabGrotesqueMono-Bold.ttf */,
+				8D0E787C28BCE9FD001D7371 /* LabGrotesqueMono.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		8D86973628AD434100082DA7 /* View */ = {
@@ -139,6 +191,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
@@ -170,8 +225,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D0E788228BCE9FD001D7371 /* LabGrotesque-BlackItalic.ttf in Resources */,
+				8D0E788A28BCE9FD001D7371 /* LabGrotesqueMono.ttf in Resources */,
+				8D0E787F28BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf in Resources */,
+				8D0E788628BCE9FD001D7371 /* LabGrotesqueMono-Bold.ttf in Resources */,
+				8D0E788728BCE9FD001D7371 /* LabGrotesque-BoldItalic.ttf in Resources */,
+				8D0E788328BCE9FD001D7371 /* LabGrotesque-Light.ttf in Resources */,
 				8D09A69528AAA5710014E075 /* Preview Assets.xcassets in Resources */,
+				8D0E788828BCE9FD001D7371 /* LabGrotesque-Black.ttf in Resources */,
+				8D0E788428BCE9FD001D7371 /* LabGrotesque-Italic.ttf in Resources */,
 				8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */,
+				8D0E788128BCE9FD001D7371 /* LabGrotesque-Bold.ttf in Resources */,
+				8D0E788C28BCE9FD001D7371 /* LabGrotesque-MediumItalic.ttf in Resources */,
+				8D0E788028BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf in Resources */,
+				8D0E788B28BCE9FD001D7371 /* LabGrotesque-Thin.ttf in Resources */,
+				8D0E788528BCE9FD001D7371 /* LabGrotesque-Regular.ttf in Resources */,
+				8D0E788928BCE9FD001D7371 /* LabGrotesque-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +391,7 @@
 				DEVELOPMENT_TEAM = 79GHQ256TM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpaceXLaunch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -351,6 +421,7 @@
 				DEVELOPMENT_TEAM = 79GHQ256TM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpaceXLaunch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

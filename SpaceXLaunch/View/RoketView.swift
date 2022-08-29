@@ -85,7 +85,7 @@ struct Title: View {
     var body: some View {
         HStack {
             Text(name)
-                .font(.custom("Lab Grotesque Medium", size: 24))
+                .font(.custom("LabGrotesque-Medium", size: 24))
             Spacer()
             Button {
                 viewModel.isPreference.toggle()
@@ -118,13 +118,13 @@ struct HScrollInfo: View {
             .overlay {
                 VStack(spacing: 5) {
                     Text("\(textUp)")
-                        .font(.custom("Lab Grotesque Bold", size: 16))
+                        .font(.custom("LabGrotesque-Bold", size: 16))
                         .foregroundColor(Color(.white))
                         .lineSpacing(16)
                         .multilineTextAlignment(.center)
                     HStack {
                         Text("\(textDown)")
-                            .font(.custom("Lab Grotesque Regular", size: 14))
+                            .font(.custom("LabGrotesque-Regular", size: 14))
                             .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
                             .multilineTextAlignment(.center)
                     }
@@ -170,6 +170,7 @@ struct RegularInfoView: View {
             Spacer()
             Text(textRight)
         }
+        .font(.custom("LabGrotesque-Regular", size: 16))
     }
     
     
@@ -194,7 +195,7 @@ struct MainInfo: View {
         Spacer()
         VStack(alignment: .leading, spacing: 15) {
             Text("ПЕРВАЯ СТУПЕНЬ")
-                .font(.custom("Lab Grotesque Bold", size: 16))
+                .font(.custom("LabGrotesque-Bold", size: 16))
             RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.firstStage.engines)")
             RegularInfoView(textLeft: "Количество топлива", textRight: "\(model.firstStage.fuelAmountTons) ton")
             RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "\(model.firstStage.burnTimeSEC ?? 100)")
@@ -205,7 +206,7 @@ struct MainInfo: View {
         Spacer()
         VStack(alignment: .leading, spacing: 15) {
             Text("ВТОРАЯ СТУПЕНЬ")
-                .font(.custom("Lab Grotesque Bold", size: 16))
+                .font(.custom("LabGrotesque-Bold", size: 16))
             RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.secondStage.engines)")
             RegularInfoView(textLeft: "Количество топлива", textRight: "\(model.secondStage.fuelAmountTons) ton")
 //            RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "go")
