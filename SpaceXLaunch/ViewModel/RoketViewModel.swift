@@ -61,6 +61,8 @@ class RoketViewModel: ObservableObject {
         self.preferenceArray = decodedData
     }
     
+    
+    
     init() {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         fetch()

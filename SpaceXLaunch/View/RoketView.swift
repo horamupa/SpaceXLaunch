@@ -156,6 +156,7 @@ struct HScroll: View {
         }
         .background(.black)
     }
+    
 }
 
 struct RegularInfoView: View {
@@ -180,41 +181,96 @@ struct RegularInfoView: View {
 struct MainInfo: View {
     
     @State var model: RoketModel
+    var dateStr: Date { dateFormat() }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             
-            RegularInfoView(textLeft: "Первый запуск", textRight: model.firstFlight)
+            HStack {
+                Text("Первый запуск")
+                Spacer()
+                Text(dateStr, style: .date)
+            }
             RegularInfoView(textLeft: "Страна", textRight: model.company)
-            RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch))
+            RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch.formatted(.currency(code: "USD"))))
     
         }
+        .font(.custom("LabGrotesque-Regular", size: 16))
         .padding(.horizontal, 20)
         
         Spacer()
         Spacer()
+        
         VStack(alignment: .leading, spacing: 15) {
             Text("ПЕРВАЯ СТУПЕНЬ")
                 .font(.custom("LabGrotesque-Bold", size: 16))
             RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.firstStage.engines)")
-            RegularInfoView(textLeft: "Количество топлива", textRight: "\(model.firstStage.fuelAmountTons) ton")
-            RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "\(model.firstStage.burnTimeSEC ?? 100)")
-        
+            HStack {
+                Text("Количество топлива")
+                Spacer()
+                HStack {
+                    Text("\(model.firstStage.fuelAmountTons.formatted())")
+                    Text("ton")
+                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                }
+                .font(.custom("LabGrotesque-Bold", size: 16))
+            }
+            HStack {
+                Text("Время сгорания в секундах")
+                Spacer()
+                HStack {
+                    Text("\(model.firstStage.burnTimeSEC ?? 100)")
+                    Text("sec")
+                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                }
+                .font(.custom("LabGrotesque-Bold", size: 16))
+            }
         }
+        .foregroundColor(.white)
+        .font(.custom("LabGrotesque-Regular", size: 16))
         .padding(.horizontal, 20)
         Spacer()
         Spacer()
+        
         VStack(alignment: .leading, spacing: 15) {
             Text("ВТОРАЯ СТУПЕНЬ")
                 .font(.custom("LabGrotesque-Bold", size: 16))
             RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.secondStage.engines)")
-            RegularInfoView(textLeft: "Количество топлива", textRight: "\(model.secondStage.fuelAmountTons) ton")
-//            RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "go")
-//            RegularInfoView(textLeft: "Время сгорания в секундах", textRight: "\(model.secondStage.burnTimeSEC)")
+            HStack {
+                Text("Количество топлива")
+                Spacer()
+                HStack {
+                    Text("\(model.secondStage.fuelAmountTons.formatted())")
+                    Text("ton")
+                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                }
+                .font(.custom("LabGrotesque-Bold", size: 16))
+            }
+            HStack {
+                Text("Время сгорания в секундах")
+                Spacer()
+                HStack {
+                    Text("\(model.secondStage.burnTimeSEC ?? 100)")
+                    Text("sec")
+                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                }
+                .font(.custom("LabGrotesque-Bold", size: 16))
+            }
         }
+        .foregroundColor(.white)
+        .font(.custom("LabGrotesque-Regular", size: 16))
         .padding(.horizontal, 20)
     }
+    
+    func dateFormat() -> Date {
+        let dateString = model.firstFlight
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let goodDate = dateFormatter.date(from: dateString) ?? Date.now
+        return goodDate
+    }
 }
+    
 
 
 

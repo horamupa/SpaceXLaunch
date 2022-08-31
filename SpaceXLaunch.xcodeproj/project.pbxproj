@@ -32,6 +32,7 @@
 		8DB6ED4A28ABADBF00DF0DB5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */; };
 		8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */; };
 		8DDEAE7828B7950000B5CD73 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDEAE7728B7950000B5CD73 /* PreferenceView.swift */; };
+		8DF7F59528BF98F1002B500B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7F59428BF98F1002B500B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		8DB6ED4928ABADBF00DF0DB5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoketView.swift; sourceTree = "<group>"; };
 		8DDEAE7728B7950000B5CD73 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
+		8DF7F59428BF98F1002B500B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				8D09A69128AAA5710014E075 /* Assets.xcassets */,
 				8D4568BE28ABD87000838891 /* APIServices.swift */,
 				8D0E788D28BCEA0A001D7371 /* Fonts */,
+				8DF7F59428BF98F1002B500B /* LaunchScreen.storyboard */,
 			);
 			path = SpaceXLaunch;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				8D0E788728BCE9FD001D7371 /* LabGrotesque-BoldItalic.ttf in Resources */,
 				8D0E788328BCE9FD001D7371 /* LabGrotesque-Light.ttf in Resources */,
 				8D09A69528AAA5710014E075 /* Preview Assets.xcassets in Resources */,
+				8DF7F59528BF98F1002B500B /* LaunchScreen.storyboard in Resources */,
 				8D0E788828BCE9FD001D7371 /* LabGrotesque-Black.ttf in Resources */,
 				8D0E788428BCE9FD001D7371 /* LabGrotesque-Italic.ttf in Resources */,
 				8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */,
@@ -395,6 +399,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -425,6 +430,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
