@@ -22,30 +22,19 @@ class RoketViewModel: ObservableObject {
     @Published var preferenceArray: [Bool] = [true,true,true,true]
     
     static var rroket = RoketModel.share
+    private var manager = DataManager()
     
 //    static let rroket = RoketModel(name: "name", active: false, stages: 3, boosters: 2, costPerLaunch: 23, successRatePct: 43, firstFlight: "Tommorow", country: "USA", company: "SpaceX", wikipedia: "gogo", spaceXDescription: "gogo", id: "123", mass: Mass(kg: 3, lb: 3), height: Diameter(meters: 3, feet: 3), diameter: Diameter(meters: 3, feet: 3), firstStage: FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), secondStage: SecondStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), payloadWeights: [PayloadWeight(id: "3", name: "3", kg: 3, lb: 3)], flickrImages: ["",""])
     
     
-    func fetch() {
-        guard let url = URL(string: RoketModel.url) else { return }
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            guard let data = data, error == nil else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                let fetInfo = try decoder.decode([RoketModel].self, from: data)
-                DispatchQueue.main.async {
-                    self!.roketArray = fetInfo
-                    self!.isFetched = true
-                    self!.roket1 = self!.roketArray[0]
-                    
-                }
-            } catch {
-                print(error)
+    func fetchJSON() async {
+        do {
+            if let decodedJSON = try await manager.fetchJSON() {
+                self.roketArray = decodedJSON
             }
+        } catch {
+            print(error.localizedDescription)
         }
-        task.resume()
-        print(roketArray.count)
     }
     
     func savePreference() {
@@ -65,10 +54,6 @@ class RoketViewModel: ObservableObject {
     
     init() {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
-        fetch()
         setPreference()
     }
-    
-//    init() { }
-    
 }

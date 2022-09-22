@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @MainActor @StateObject var viewModel = RoketViewModel()
+    @StateObject var viewModel = RoketViewModel()
     
     @State var selectedTab: String = "Falcon 1"
     @State private var update = UUID()
@@ -33,6 +33,11 @@ struct ContentView: View {
                     Preference(viewModel: viewModel)
             }
             .environmentObject(viewModel)
+            .onAppear {
+                Task {
+                    await viewModel.fetchJSON()
+                }
+            }
     }
     
 }
