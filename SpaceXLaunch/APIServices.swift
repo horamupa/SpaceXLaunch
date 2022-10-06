@@ -18,12 +18,3 @@ enum ApiService {
     }
     
     
-//    static funk fetchTodos() async throws -> [String] {
-//        guard let url = URL(string: "") else {
-//            return []
-//        }
-//        
-//        return try await ApiService
-//            .fetch(from: url)
-//    }
-}
