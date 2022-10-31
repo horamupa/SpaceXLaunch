@@ -3,12 +3,9 @@
 import Foundation
 import SwiftUI
 
-// MARK: - SpaceXElement
-//struct Response: Codable {
-//    let rokets: [RoketModel]
-//}
 
-struct RoketModel: Codable, Identifiable, Hashable {
+
+struct RocketModel: Codable, Identifiable, Hashable {
     let name: String
 //    let active: Bool
 //    let stages, boosters, , successRatePct: Int
@@ -26,7 +23,7 @@ struct RoketModel: Codable, Identifiable, Hashable {
     let payloadWeights: [PayloadWeight]
     let flickrImages: [String]
     
-    static var share = RoketModel(id: "123", images: ["https://hws.dev/img/logo.png", "https://hws.dev/img/logo.png"], name: "gogoroket", firstStage: FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), height: Diameter(meters: 3, feet: 3), diameter: Diameter(meters: 3, feet: 3), mass: Mass(kg: 3, lb: 3), payloadWeights: [PayloadWeight(id: "2", name: "2", kg: 23, lb: 23)], firstFlight: "go", country: "go", company: "go", costPerLaunch: 13, secondStage: SecondStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3))
+    static var share = RocketModel(id: "123", images: ["https://i.imgur.com/DaCfMsj.jpg", "https://hws.dev/img/logo.png"], name: "SpaceX1", firstStage: FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), height: Diameter(meters: 3, feet: 3), diameter: Diameter(meters: 3, feet: 3), mass: Mass(kg: 3, lb: 3), payloadWeights: [PayloadWeight(id: "2", name: "2", kg: 23, lb: 23)], firstFlight: "go", country: "go", company: "go", costPerLaunch: 13, secondStage: SecondStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3))
     
     static let url = "https://api.spacexdata.com/v4/rockets"
     
@@ -199,4 +196,4 @@ struct CompositeFairing: Codable, Hashable {
     let height, diameter: Diameter
 }
 
-typealias SpaceX = [RoketModel]
+typealias SpaceX = [RocketModel]

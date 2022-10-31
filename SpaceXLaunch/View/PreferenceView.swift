@@ -9,14 +9,7 @@ import SwiftUI
 
 struct Preference: View {
     
-//    @EnvironmentObject var viewModel: RoketViewModel
-    
-    @ObservedObject var viewModel: RoketViewModel
-    
-//    @State var isMetricHeight: Bool = true
-//    @State var isMetricDiametr: Bool = true
-//    @State var isMetricisMetricMass: Bool = true
-//    @State var isMetricUsefulWeight: Bool = true
+    @ObservedObject var viewModel: RocketViewModel
     
     var body: some View {
         NavigationView {
@@ -75,9 +68,9 @@ struct Preference: View {
 
 struct Preference_Previews: PreviewProvider {
     
-    @EnvironmentObject var viewModel: RoketViewModel
+    @EnvironmentObject var viewModel: RocketViewModel
     
     static var previews: some View {
-        Preference(viewModel: RoketViewModel())
+        Preference(viewModel: RocketViewModel())
     }
 }

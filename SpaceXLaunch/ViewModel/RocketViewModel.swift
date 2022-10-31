@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RoketViewModel: ObservableObject {
+class RocketViewModel: ObservableObject {
     
 //    @Published var shared = RoketViewModel()
     
@@ -17,11 +17,11 @@ class RoketViewModel: ObservableObject {
     @Published var isMetricDiametr: Bool = true
     @Published var isMetricMass: Bool = true
     @Published var isMetricUsefulWeight: Bool = true
-    @Published var roket1 = RoketModel.share
+    @Published var roket1 = RocketModel.share
     @Published var isPreference: Bool = false
     @Published var preferenceArray: [Bool] = [true,true,true,true]
     
-    static var rroket = RoketModel.share 
+    static var rroket = RocketModel.share 
     private var manager = DataManager()
     
 //    static let rroket = RoketModel(name: "name", active: false, stages: 3, boosters: 2, costPerLaunch: 23, successRatePct: 43, firstFlight: "Tommorow", country: "USA", company: "SpaceX", wikipedia: "gogo", spaceXDescription: "gogo", id: "123", mass: Mass(kg: 3, lb: 3), height: Diameter(meters: 3, feet: 3), diameter: Diameter(meters: 3, feet: 3), firstStage: FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), secondStage: SecondStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), payloadWeights: [PayloadWeight(id: "3", name: "3", kg: 3, lb: 3)], flickrImages: ["",""]) 
@@ -32,6 +32,10 @@ class RoketViewModel: ObservableObject {
             if let decodedJSON = try await manager.fetchJSON() {
                 await MainActor.run(body: {
                     self.roketArray = decodedJSON
+                    
+                    print(roketArray.first?.flickrImages ?? "nono")
+                    print(roketArray.first?.flickrImages.first ?? "nono")
+                    
                 })
             }
         } catch {

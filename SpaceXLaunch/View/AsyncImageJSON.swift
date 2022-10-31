@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AsyncImageJSON: View {
     
-    @ObservedObject var viewModel: RoketViewModel
+    @ObservedObject var viewModel: RocketViewModel
     
 //    var random = Int.random(in: 0...viewModel.roketArray[0].flickrImages.count)
     

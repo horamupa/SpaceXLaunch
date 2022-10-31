@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var viewModel = RoketViewModel()
+    @StateObject var viewModel = RocketViewModel()
     
-    @State var selectedTab: String = "Falcon 1"
+//    @State var selectedTab: String = "Falcon 1"
     @State private var update = UUID()
     
     var body: some View {

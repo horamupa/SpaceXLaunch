@@ -4,38 +4,26 @@ import SwiftUI
 
 struct RoketView: View {
     
-    @EnvironmentObject var viewModel: RoketViewModel
-    var model: RoketModel
+    @EnvironmentObject var viewModel: RocketViewModel
+    var model: RocketModel
     
     var body: some View {
-        VStack {
+        ZStack {
+            Color(.black)
+                .ignoresSafeArea()
             ScrollView {
-                VStack(spacing: -20) {
+                VStack(spacing: 0) {
                     
-//                    AsyncImage(url: URL(string: "\(model.flickrImages[1])")) { image in
-//                                image.resizable().scaledToFit()
-//                            }
-//                                placeholder: {
-//                                    ProgressView()
-//                                }
-//                            .frame(width: 200, height: 200)
-                    
-                    Image("SpaceX1")
-                        .resizable()
-                        .scaledToFill()
-                        .ignoresSafeArea()
+                    rocketImage
                     
                     VStack {
-
                         Title(name: model.name)
-                        
+ 
                         HScroll(model: model)
-                        
                         
                         MainInfo(model: model)
                         
                         NavigationLink {
-                            
                             LaunchScreenView()
                             
                         } label: {
@@ -49,12 +37,14 @@ struct RoketView: View {
                         Text(" ")
                             .frame(height: 50)
                     }
+                    
                     .foregroundColor(.white)
                     .frame(width: screen.width)
                     .background(.black)
                     .cornerRadius(30)
+                    .offset(y: -30)
                 }
-                .frame(height: screen.height)
+//                .frame(height: screen.height)
             }
             .navigationBarHidden(true)
             .ignoresSafeArea()
@@ -67,25 +57,39 @@ struct RoketView: View {
 
 struct RoketView_Previews: PreviewProvider {
     
-    static var viewModel = RoketViewModel()
-    var model = RoketModel.share
+    static var viewModel = RocketViewModel()
+    var model = RocketModel.share
     static var previews: some View {
-        RoketView(model: RoketModel.share)
+        RoketView(model: RocketModel.share)
             .environmentObject(viewModel)
     }
         
+}
+
+extension RoketView {
+    private var rocketImage: some View {
+        AsyncImage(url: URL(string: model.flickrImages.first ?? "https://imgur.com/DaCfMsj.jpg")) { image in
+            image.resizable().scaledToFill().cornerRadius(16)
+                }
+                    placeholder: {
+                        Image("Pic2")
+                            .resizable()
+                            .scaledToFill()
+                            .cornerRadius(16)
+                    }
+    }
 }
 
 
 struct Title: View {
     
     @State var name: String
-    @EnvironmentObject var viewModel: RoketViewModel
+    @EnvironmentObject var viewModel: RocketViewModel
     
     var body: some View {
         HStack {
             Text(name)
-                .font(.custom("LabGrotesque-Medium", size: 24))
+                .font(.labGrotesque(.bold, size: 28))
             Spacer()
             Button {
                 viewModel.isPreference.toggle()
@@ -139,9 +143,9 @@ struct HScrollInfo: View {
 
 struct HScroll: View {
     
-    var model: RoketModel
+    var model: RocketModel
 
-    @EnvironmentObject var viewModel: RoketViewModel
+    @EnvironmentObject var viewModel: RocketViewModel
     
     var body: some View {
         ScrollView(.horizontal) {
@@ -180,7 +184,7 @@ struct RegularInfoView: View {
 
 struct MainInfo: View {
     
-    @State var model: RoketModel
+    @State var model: RocketModel
     var dateStr: Date { dateFormat() }
     
     var body: some View {

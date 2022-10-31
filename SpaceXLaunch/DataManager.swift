@@ -11,7 +11,7 @@ class DataManager {
     
     private var url = URL(string: "https://api.spacexdata.com/v4/rockets")!
     
-    func fetchJSON() async throws -> [RoketModel]? {
+    func fetchJSON() async throws -> [RocketModel]? {
         
             do {
                 let (data, response) = try await URLSession(configuration: .default).data(from: url)
@@ -23,10 +23,10 @@ class DataManager {
         
     }
     
-    func decodeJsonHandler(data: Data?, response: URLResponse?) throws -> [RoketModel]? {
+    func decodeJsonHandler(data: Data?, response: URLResponse?) throws -> [RocketModel]? {
         guard
             let data = data,
-            let json = try? JSONDecoder().decode([RoketModel].self, from: data),
+            let json = try? JSONDecoder().decode([RocketModel].self, from: data),
             let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
             return nil
         }
