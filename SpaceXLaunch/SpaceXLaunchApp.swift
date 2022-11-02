@@ -13,7 +13,10 @@ var screen = UIScreen.main.bounds
 struct SpaceXLaunchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView(content: {
+                ContentView()
+            })
+            .navigationBarHidden(true)
         }
     }
 }

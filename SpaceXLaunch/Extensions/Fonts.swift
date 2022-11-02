@@ -15,6 +15,7 @@ extension Font {
         case bold
         case black
         case custom(String)
+        case medium
 
         var value: String {
             switch self {
@@ -26,6 +27,8 @@ extension Font {
                 return "LabGrotesque-Bold"
             case .black:
                 return "LabGrotesque-Black"
+            case .medium:
+                return "LabGrotesque-Medium"
 
             case .custom(let name):
                 return name

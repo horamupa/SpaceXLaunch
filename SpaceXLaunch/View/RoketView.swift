@@ -5,6 +5,7 @@ import SwiftUI
 struct RoketView: View {
     
     @EnvironmentObject var viewModel: RocketViewModel
+    @State var isLaunch: Bool = false
     var model: RocketModel
     
     var body: some View {
@@ -22,10 +23,9 @@ struct RoketView: View {
                         HScroll(model: model)
                         
                         MainInfo(model: model)
-                        
                         NavigationLink {
                             LaunchScreenView()
-                            
+                                .environmentObject(viewModel)
                         } label: {
                             Text("Посмотреть запуски")
                                 .padding()
@@ -33,15 +33,16 @@ struct RoketView: View {
                                 .background(.thinMaterial)
                                 .cornerRadius(10)
                         }
-                        
+
+                       
                         Text(" ")
                             .frame(height: 50)
                     }
                     
                     .foregroundColor(.white)
-                    .frame(width: screen.width)
+//                    .frame(width: screen.width)
                     .background(.black)
-                    .cornerRadius(30)
+                    .cornerRadius(32)
                     .offset(y: -30)
                 }
 //                .frame(height: screen.height)
@@ -68,7 +69,7 @@ struct RoketView_Previews: PreviewProvider {
 
 extension RoketView {
     private var rocketImage: some View {
-        AsyncImage(url: URL(string: model.flickrImages.first ?? "https://imgur.com/DaCfMsj.jpg")) { image in
+        AsyncImage(url: URL(string: model.flickrImages.first ?? "https://cdn.mos.cms.futurecdn.net/oQcnKsvzui8X2ebAq3BvMM.jpg")) { image in
             image.resizable().scaledToFill().cornerRadius(16)
                 }
                     placeholder: {
@@ -89,18 +90,19 @@ struct Title: View {
     var body: some View {
         HStack {
             Text(name)
-                .font(.labGrotesque(.bold, size: 28))
+                .font(.labGrotesque(.medium, size: 28))
             Spacer()
             Button {
                 viewModel.isPreference.toggle()
             } label: {
                 Image(systemName: "gearshape")
+                    .resizable()
+                    .frame(width: 32, height: 32)
             }
         }
-        .padding()
-        .padding()
-        .font(.system(size: 30))
-        .font(.headline)
+        .padding(.top, 30)
+        .padding(.horizontal, 20)
+//        .font(.system(size: 30))
     }
 }
 
@@ -188,82 +190,84 @@ struct MainInfo: View {
     var dateStr: Date { dateFormat() }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
+        VStack {
+            VStack(alignment: .leading, spacing: 15) {
+                HStack {
+                    Text("Первый запуск")
+                    Spacer()
+                    Text(dateStr, style: .date)
+                }
+                RegularInfoView(textLeft: "Страна", textRight: model.company)
+                RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch.formatted(.currency(code: "USD"))))
+                
+            }
+            .font(.custom("LabGrotesque-Regular", size: 16))
+            .padding(.horizontal, 20)
             
-            HStack {
-                Text("Первый запуск")
-                Spacer()
-                Text(dateStr, style: .date)
+            
+            Spacer()
+            Spacer()
+            
+            VStack(alignment: .leading, spacing: 15) {
+                Text("ПЕРВАЯ СТУПЕНЬ")
+                    .font(.custom("LabGrotesque-Bold", size: 16))
+                RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.firstStage.engines)")
+                HStack {
+                    Text("Количество топлива")
+                    Spacer()
+                    HStack {
+                        Text("\(model.firstStage.fuelAmountTons.formatted())")
+                        Text("ton")
+                            .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                    }
+                    .font(.custom("LabGrotesque-Bold", size: 16))
+                }
+                HStack {
+                    Text("Время сгорания в секундах")
+                    Spacer()
+                    HStack {
+                        Text("\(model.firstStage.burnTimeSEC ?? 100)")
+                        Text("sec")
+                            .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                    }
+                    .font(.custom("LabGrotesque-Bold", size: 16))
+                }
             }
-            RegularInfoView(textLeft: "Страна", textRight: model.company)
-            RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch.formatted(.currency(code: "USD"))))
-    
+            .foregroundColor(.white)
+            .font(.custom("LabGrotesque-Regular", size: 16))
+            .padding(.horizontal, 20)
+            Spacer()
+            Spacer()
+            
+            VStack(alignment: .leading, spacing: 15) {
+                Text("ВТОРАЯ СТУПЕНЬ")
+                    .font(.custom("LabGrotesque-Bold", size: 16))
+                RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.secondStage.engines)")
+                HStack {
+                    Text("Количество топлива")
+                    Spacer()
+                    HStack {
+                        Text("\(model.secondStage.fuelAmountTons.formatted())")
+                        Text("ton")
+                            .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                    }
+                    .font(.custom("LabGrotesque-Bold", size: 16))
+                }
+                HStack {
+                    Text("Время сгорания в секундах")
+                    Spacer()
+                    HStack {
+                        Text("\(model.secondStage.burnTimeSEC ?? 100)")
+                        Text("sec")
+                            .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
+                    }
+                    .font(.custom("LabGrotesque-Bold", size: 16))
+                }
+            }
+            .foregroundColor(.white)
+            .font(.custom("LabGrotesque-Regular", size: 16))
+            .padding(.horizontal, 20)
         }
-        .font(.custom("LabGrotesque-Regular", size: 16))
-        .padding(.horizontal, 20)
-        
-        Spacer()
-        Spacer()
-        
-        VStack(alignment: .leading, spacing: 15) {
-            Text("ПЕРВАЯ СТУПЕНЬ")
-                .font(.custom("LabGrotesque-Bold", size: 16))
-            RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.firstStage.engines)")
-            HStack {
-                Text("Количество топлива")
-                Spacer()
-                HStack {
-                    Text("\(model.firstStage.fuelAmountTons.formatted())")
-                    Text("ton")
-                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
-                }
-                .font(.custom("LabGrotesque-Bold", size: 16))
-            }
-            HStack {
-                Text("Время сгорания в секундах")
-                Spacer()
-                HStack {
-                    Text("\(model.firstStage.burnTimeSEC ?? 100)")
-                    Text("sec")
-                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
-                }
-                .font(.custom("LabGrotesque-Bold", size: 16))
-            }
-        }
-        .foregroundColor(.white)
-        .font(.custom("LabGrotesque-Regular", size: 16))
-        .padding(.horizontal, 20)
-        Spacer()
-        Spacer()
-        
-        VStack(alignment: .leading, spacing: 15) {
-            Text("ВТОРАЯ СТУПЕНЬ")
-                .font(.custom("LabGrotesque-Bold", size: 16))
-            RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.secondStage.engines)")
-            HStack {
-                Text("Количество топлива")
-                Spacer()
-                HStack {
-                    Text("\(model.secondStage.fuelAmountTons.formatted())")
-                    Text("ton")
-                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
-                }
-                .font(.custom("LabGrotesque-Bold", size: 16))
-            }
-            HStack {
-                Text("Время сгорания в секундах")
-                Spacer()
-                HStack {
-                    Text("\(model.secondStage.burnTimeSEC ?? 100)")
-                    Text("sec")
-                        .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
-                }
-                .font(.custom("LabGrotesque-Bold", size: 16))
-            }
-        }
-        .foregroundColor(.white)
-        .font(.custom("LabGrotesque-Regular", size: 16))
-        .padding(.horizontal, 20)
     }
     
     func dateFormat() -> Date {
@@ -274,7 +278,3 @@ struct MainInfo: View {
         return goodDate
     }
 }
-    
-
-
-

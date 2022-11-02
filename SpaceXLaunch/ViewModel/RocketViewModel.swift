@@ -13,6 +13,7 @@ class RocketViewModel: ObservableObject {
     
     @Published var isFetched: Bool = false
     @Published var roketArray = [rroket]
+    @Published var launchArray: [LaunchModel] = []
     @Published var isMetricHeight: Bool = true
     @Published var isMetricDiametr: Bool = true
     @Published var isMetricMass: Bool = true
@@ -24,18 +25,26 @@ class RocketViewModel: ObservableObject {
     static var rroket = RocketModel.share 
     private var manager = DataManager()
     
-//    static let rroket = RoketModel(name: "name", active: false, stages: 3, boosters: 2, costPerLaunch: 23, successRatePct: 43, firstFlight: "Tommorow", country: "USA", company: "SpaceX", wikipedia: "gogo", spaceXDescription: "gogo", id: "123", mass: Mass(kg: 3, lb: 3), height: Diameter(meters: 3, feet: 3), diameter: Diameter(meters: 3, feet: 3), firstStage: FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), secondStage: SecondStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), payloadWeights: [PayloadWeight(id: "3", name: "3", kg: 3, lb: 3)], flickrImages: ["",""]) 
-    
     
     func fetchJSON() async {
         do {
             if let decodedJSON = try await manager.fetchJSON() {
                 await MainActor.run(body: {
                     self.roketArray = decodedJSON
-                    
-                    print(roketArray.first?.flickrImages ?? "nono")
-                    print(roketArray.first?.flickrImages.first ?? "nono")
-                    
+                    print("rocket array OK")
+                })
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func fetchJSON2() async {
+        do {
+           if let launchJSON = try await manager.fetchJSON2() {
+                await MainActor.run(body: {
+                    self.launchArray = launchJSON
+                    print("launch array OK")
                 })
             }
         } catch {

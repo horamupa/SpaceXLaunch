@@ -18,27 +18,28 @@ struct Preference: View {
                     .ignoresSafeArea()
                 VStack {
                     Toggle(isOn: $viewModel.preferenceArray[0]) {
-                                Text("Высота")
+                        Text(viewModel.preferenceArray[0] ? "Высота (m)" : "Высота (ft)")
                             }
                     .toggleStyle(.switch)
                             .padding()
                     Toggle(isOn: $viewModel.preferenceArray[1]) {
-                                Text("Диаметр")
+                        Text(viewModel.preferenceArray[1] ? "Диаметр (m)" : "Диаметр (ft)")
                             }
                             .toggleStyle(SwitchToggleStyle())
                             .padding()
                     Toggle(isOn: $viewModel.preferenceArray[2]) {
-                                Text("Масса")
+                        Text(viewModel.preferenceArray[2] ? "Масса (kg)" : "Масса (lb)")
                             }
                             .toggleStyle(SwitchToggleStyle())
                             .padding()
                     Toggle(isOn: $viewModel.preferenceArray[3]) {
-                                Text("Полезная нагрузка")
+                        Text(viewModel.preferenceArray[3] ? "Полезная нагрузка (kg)" : "Полезная нагрузка (lb)")
                             }
                             .toggleStyle(SwitchToggleStyle())
                             .padding()
                     Spacer()
                 }
+                .font(.labGrotesque(.regular, size: 18))
                 .foregroundColor(.white)
             }
             .onAppear {
@@ -74,3 +75,4 @@ struct Preference_Previews: PreviewProvider {
         Preference(viewModel: RocketViewModel())
     }
 }
+
