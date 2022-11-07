@@ -6,16 +6,24 @@
 //
 
 import SwiftUI
+import Combine
 
-class DataManager {
+class DataManager: ObservableObject {
     
-    private var url = URL(string: "https://api.spacexdata.com/v4/rockets")!
-    private var url2 = URL(string: "https://api.spacexdata.com/v4/launches")!
+    @Published var decodedLaunch: [LaunchModel] = []
+    var cansellables = Set<AnyCancellable>()
+    
+    private var urlRocket = URL(string: "https://api.spacexdata.com/v4/rockets")!
+    private var urlLaunch = URL(string: "https://api.spacexdata.com/v4/launches")!
+    
+    init() {
+        fetchJSON2()
+    }
     
     func fetchJSON() async throws -> [RocketModel]? {
         
             do {
-                let (data, response) = try await URLSession(configuration: .default).data(from: url)
+                let (data, response) = try await URLSession(configuration: .default).data(from: urlRocket)
                 let jsonData = try decodeJsonHandler(data: data, response: response)
                 return jsonData
             } catch {
@@ -34,27 +42,27 @@ class DataManager {
         return json
     }
     
-    func fetchJSON2() async throws -> [LaunchModel]? {
+    func fetchJSON2() {
         
-            do {
-                let (data, response) = try await URLSession(configuration: .default).data(from: url2)
-                let jsonData = try decodeJsonHandler2(data: data, response: response)
-                return jsonData
-            } catch {
-                throw error
+        URLSession.shared.dataTaskPublisher(for: urlLaunch)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .tryMap(combineHandler)
+            .decode(type: [LaunchModel].self, decoder: JSONDecoder())
+            .sink { (compeletion) in
+                print("Compeletion:\(compeletion)")
+            } receiveValue: { [weak self] (result) in
+                self?.decodedLaunch = result
             }
-        
+            .store(in: &cansellables)
     }
     
-    func decodeJsonHandler2(data: Data?, response: URLResponse?) throws -> [LaunchModel]? {
+    func combineHandler(compeletion: URLSession.DataTaskPublisher.Output ) throws -> Data {
         guard
-            let data = data,
-            let json = try? JSONDecoder().decode([LaunchModel].self, from: data),
-            let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
-            return nil
+            let responce = compeletion.response as? HTTPURLResponse,
+              responce.statusCode >= 200 && responce.statusCode <= 300 else {
+            throw URLError(.badServerResponse)
         }
-        return json
+        return compeletion.data
     }
-    
-    
 }

@@ -10,7 +10,8 @@ import Foundation
 class RocketViewModel: ObservableObject {
     
 //    @Published var shared = RoketViewModel()
-    
+//    @StateO
+    var manager = DataManager()
     @Published var isFetched: Bool = false
     @Published var roketArray = [rroket]
     @Published var launchArray: [LaunchModel] = []
@@ -23,7 +24,7 @@ class RocketViewModel: ObservableObject {
     @Published var preferenceArray: [Bool] = [true,true,true,true]
     
     static var rroket = RocketModel.share 
-    private var manager = DataManager()
+    
     
     
     func fetchJSON() async {
@@ -39,17 +40,8 @@ class RocketViewModel: ObservableObject {
         }
     }
     
-    func fetchJSON2() async {
-        do {
-           if let launchJSON = try await manager.fetchJSON2() {
-                await MainActor.run(body: {
-                    self.launchArray = launchJSON
-                    print("launch array OK")
-                })
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
+    func fetchJSON2() {
+        launchArray = manager.decodedLaunch
     }
     
     func savePreference() {
