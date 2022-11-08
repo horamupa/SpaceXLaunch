@@ -11,6 +11,7 @@
 		8D09A69028AAA5700014E075 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A68F28AAA5700014E075 /* ContentView.swift */; };
 		8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69128AAA5710014E075 /* Assets.xcassets */; };
 		8D09A69528AAA5710014E075 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69428AAA5710014E075 /* Preview Assets.xcassets */; };
+		8D0B4EBC291A8CB400B97148 /* POSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4EBB291A8CB400B97148 /* POSModel.swift */; };
 		8D0C3EDA2912A50F0092CABF /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0C3ED92912A50F0092CABF /* LaunchModel.swift */; };
 		8D0E787F28BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787128BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf */; };
 		8D0E788028BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0E787228BCE9FD001D7371 /* LabGrotesque-ThinItalic.ttf */; };
@@ -45,6 +46,8 @@
 		8D09A68F28AAA5700014E075 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D09A69128AAA5710014E075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D09A69428AAA5710014E075 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8D0B4EB829199E5B00B97148 /* RequestRocket.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RequestRocket.json; sourceTree = "<group>"; };
+		8D0B4EBB291A8CB400B97148 /* POSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSModel.swift; sourceTree = "<group>"; };
 		8D0C3ED92912A50F0092CABF /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
 		8D0E787028BCE37C001D7371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D0E787128BCE9FD001D7371 /* LabGrotesque-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LabGrotesque-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 				8D09A69128AAA5710014E075 /* Assets.xcassets */,
 				8D29A9A928DCD230001B2E80 /* DataManager.swift */,
 				8D4568BE28ABD87000838891 /* APIServices.swift */,
+				8D0B4EB829199E5B00B97148 /* RequestRocket.json */,
 				8D0E788D28BCEA0A001D7371 /* Fonts */,
 				8DF7F59428BF98F1002B500B /* LaunchScreen.storyboard */,
 			);
@@ -174,6 +178,7 @@
 			children = (
 				8D4568BC28ABC9E300838891 /* RocketModel.swift */,
 				8D0C3ED92912A50F0092CABF /* LaunchModel.swift */,
+				8D0B4EBB291A8CB400B97148 /* POSModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				8D0C3EDA2912A50F0092CABF /* LaunchModel.swift in Sources */,
 				8D09A69028AAA5700014E075 /* ContentView.swift in Sources */,
 				8DF3540A290FF1C10021AF6E /* PreviewProvider.swift in Sources */,
+				8D0B4EBC291A8CB400B97148 /* POSModel.swift in Sources */,
 				8D4568BF28ABD87000838891 /* APIServices.swift in Sources */,
 				8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */,
 				8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */,

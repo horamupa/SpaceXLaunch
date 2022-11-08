@@ -18,13 +18,32 @@ struct RoketView: View {
                     rocketImage
                     
                     VStack {
+                            Text("\(viewModel.requestRocket.count)")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                            ForEach(viewModel.requestRocket, content: { launch in
+                                Text(launch.rocket)
+                                Text(launch.date_local)
+                            })
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                        Button {
+                            viewModel.fetchJSON2()
+                        } label: {
+                            Text("Fetch Json")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                            
+                        }
+
+                        
                         Title(name: model.name)
  
                         HScroll(model: model)
                         
                         MainInfo(model: model)
                         NavigationLink {
-                            LaunchScreenView()
+                            LaunchScreenView(model: model)
                                 .environmentObject(viewModel)
                         } label: {
                             Text("Посмотреть запуски")

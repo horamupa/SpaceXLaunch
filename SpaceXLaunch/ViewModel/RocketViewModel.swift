@@ -9,12 +9,13 @@ import Foundation
 
 class RocketViewModel: ObservableObject {
     
-//    @Published var shared = RoketViewModel()
-//    @StateO
+    
     var manager = DataManager()
+    
     @Published var isFetched: Bool = false
     @Published var roketArray = [rroket]
     @Published var launchArray: [LaunchModel] = []
+    @Published var requestRocket: [POSModel] = [POSModel.share]
     @Published var isMetricHeight: Bool = true
     @Published var isMetricDiametr: Bool = true
     @Published var isMetricMass: Bool = true
@@ -42,6 +43,14 @@ class RocketViewModel: ObservableObject {
     
     func fetchJSON2() {
         launchArray = manager.decodedLaunch
+        requestRocket = manager.POSTLaunch
+    }
+    
+    func sortedLaunches(model: RocketModel) -> [LaunchModel] {
+        let sortedArray = launchArray
+                                .filter({$0.upcoming})
+                                .filter({$0.rocket.rawValue == model.id})
+        return sortedArray
     }
     
     func savePreference() {
@@ -62,5 +71,6 @@ class RocketViewModel: ObservableObject {
     init() {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         setPreference()
+        fetchJSON2()
     }
 }

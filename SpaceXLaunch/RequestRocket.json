@@ -1,0 +1,82 @@
+{
+    "docs": [
+        {
+            "fairings": {
+                "reused": null,
+                "recovery_attempt": null,
+                "recovered": null,
+                "ships": []
+            },
+            "links": {
+                "patch": {
+                    "small": null,
+                    "large": null
+                },
+                "reddit": {
+                    "campaign": null,
+                    "launch": null,
+                    "media": null,
+                    "recovery": null
+                },
+                "flickr": {
+                    "small": [],
+                    "original": []
+                },
+                "presskit": null,
+                "webcast": null,
+                "youtube_id": null,
+                "article": null,
+                "wikipedia": null
+            },
+            "static_fire_date_utc": null,
+            "static_fire_date_unix": null,
+            "net": false,
+            "window": null,
+            "rocket": "5e9d0d95eda69973a809d1ec",
+            "success": null,
+            "failures": [],
+            "details": null,
+            "crew": [],
+            "ships": [],
+            "capsules": [],
+            "payloads": [
+                "6243b896af52800c6e91926e"
+            ],
+            "launchpad": "5e9e4501f509094ba4566f84",
+            "flight_number": 200,
+            "name": "WorldView Legion 1 & 2",
+            "date_utc": "2022-12-01T00:00:00.000Z",
+            "date_unix": 1669852800,
+            "date_local": "2022-11-30T19:00:00-05:00",
+            "date_precision": "month",
+            "upcoming": true,
+            "cores": [
+                {
+                    "core": null,
+                    "flight": null,
+                    "gridfins": null,
+                    "legs": null,
+                    "reused": null,
+                    "landing_attempt": null,
+                    "landing_success": null,
+                    "landing_type": null,
+                    "landpad": null
+                }
+            ],
+            "auto_update": true,
+            "tbd": false,
+            "launch_library_id": null,
+            "id": "6243ae58af52800c6e91925a"
+        }
+    ],
+    "totalDocs": 16,
+    "offset": 0,
+    "limit": 1,
+    "totalPages": 16,
+    "page": 1,
+    "pagingCounter": 1,
+    "hasPrevPage": false,
+    "hasNextPage": true,
+    "prevPage": null,
+    "nextPage": 2
+}
