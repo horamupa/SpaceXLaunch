@@ -5,7 +5,8 @@
 //  Created by MM on 17.08.2022.
 //
 
-import Foundation
+import SwiftUI
+import Combine
 
 class RocketViewModel: ObservableObject {
     
@@ -23,6 +24,7 @@ class RocketViewModel: ObservableObject {
     @Published var roket1 = RocketModel.share
     @Published var isPreference: Bool = false
     @Published var preferenceArray: [Bool] = [true,true,true,true]
+    var cancellables = Set<AnyCancellable>()
     
     static var rroket = RocketModel.share 
     
@@ -41,9 +43,18 @@ class RocketViewModel: ObservableObject {
         }
     }
     
+    func getData() {
+        manager.$POSTLaunch
+            .sink { [weak self] launch in
+                self?.requestRocket = launch
+            }
+            .store(in: &cancellables)
+    }
+    
     func fetchLaunch() {
         launchArray = manager.decodedLaunch
         requestRocket = manager.fetchLaunch()
+//        requestRocket = manager.$POSTLaunch
     }
     
     func sortedLaunches(model: RocketModel) -> [LaunchModel] {
@@ -72,5 +83,6 @@ class RocketViewModel: ObservableObject {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         setPreference()
         fetchLaunch()
+        getData()
     }
 }

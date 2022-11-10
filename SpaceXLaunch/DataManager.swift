@@ -71,7 +71,7 @@ class DataManager: ObservableObject {
         return compeletion.data
     }
     
-    func fetchLaunch() -> [POSModel]{
+    func fetchLaunch() -> [POSModel] {
 
             let decoder = JSONDecoder()
 
