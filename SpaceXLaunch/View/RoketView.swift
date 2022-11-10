@@ -28,7 +28,7 @@ struct RoketView: View {
                             .font(.largeTitle)
                             .foregroundColor(.white)
                         Button {
-                            viewModel.fetchJSON2()
+                            viewModel.fetchLaunch()
                         } label: {
                             Text("Fetch Json")
                                 .font(.largeTitle)

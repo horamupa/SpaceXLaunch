@@ -41,9 +41,9 @@ class RocketViewModel: ObservableObject {
         }
     }
     
-    func fetchJSON2() {
+    func fetchLaunch() {
         launchArray = manager.decodedLaunch
-        requestRocket = manager.POSTLaunch
+        requestRocket = manager.fetchLaunch()
     }
     
     func sortedLaunches(model: RocketModel) -> [LaunchModel] {
@@ -71,6 +71,6 @@ class RocketViewModel: ObservableObject {
     init() {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         setPreference()
-        fetchJSON2()
+        fetchLaunch()
     }
 }

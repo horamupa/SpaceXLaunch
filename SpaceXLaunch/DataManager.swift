@@ -22,7 +22,7 @@ class DataManager: ObservableObject {
     
     init() {
         fetchJSON2()
-        fetchLaunch()
+        POSTLaunch = fetchLaunch()
     }
     
     func fetchJSON() async throws -> [RocketModel]? {
@@ -71,7 +71,7 @@ class DataManager: ObservableObject {
         return compeletion.data
     }
     
-    func fetchLaunch() {
+    func fetchLaunch() -> [POSModel]{
 
             let decoder = JSONDecoder()
 
@@ -87,45 +87,6 @@ class DataManager: ObservableObject {
                     self?.POSTLaunch = result
                 }
                 .store(in: &cansellables)
-        }
-    
-    func networkingPost() {
-        
-//
-//
-//        let parameterDictionary: [String: Any] = [
-//            "query":[
-//                "upcoming": true,
-//                "rocket": "5e9d0d95eda69973a809d1ec"
-//            ],
-//            "options":[
-//                "limit": 1]
-//        ]
-//        let jsonData = try? JSONSerialization.data(withJSONObject: parameterDictionary)
-//
-//        // create post request
-//        var request = URLRequest(url: urlLaunch)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.setValue("application/json", forHTTPHeaderField: "Accept")
-//        // insert json data to the request
-//        request.httpBody = jsonData
-//
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//            guard let incomingData = try? JSONDecoder().decode(RequestLaunch.self, from: data) else {
-//                print("BadJson decode")
-//                return}
-//            self.POSTLaunch.append(incomingData)
-//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//            if let responseJSON = responseJSON as? [String: Any] {
-////                print(responseJSON) //Code after Successfull POST Request
-//            }
-//        }
-//
-//        task.resume()
+        return self.POSTLaunch
     }
 }
