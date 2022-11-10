@@ -21,8 +21,8 @@ class DataManager: ObservableObject {
     private var urlLaunch = URL(string: "https://api.spacexdata.com/v4/launches")!
     
     init() {
-        fetchJSON2()
-        POSTLaunch = fetchLaunch()
+        fetchRocket()
+        fetchLaunch()
     }
     
     func fetchJSON() async throws -> [RocketModel]? {
@@ -47,7 +47,7 @@ class DataManager: ObservableObject {
         return json
     }
     
-    func fetchJSON2() {
+    func fetchRocket() {
         
         URLSession.shared.dataTaskPublisher(for: urlLaunch)
             .subscribe(on: DispatchQueue.global(qos: .background))
@@ -71,7 +71,7 @@ class DataManager: ObservableObject {
         return compeletion.data
     }
     
-    func fetchLaunch() -> [POSModel] {
+    func fetchLaunch() {
 
             let decoder = JSONDecoder()
 
@@ -87,6 +87,5 @@ class DataManager: ObservableObject {
                     self?.POSTLaunch = result
                 }
                 .store(in: &cansellables)
-        return self.POSTLaunch
     }
 }

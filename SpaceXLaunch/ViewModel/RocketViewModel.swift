@@ -13,7 +13,6 @@ class RocketViewModel: ObservableObject {
     
     var manager = DataManager()
     
-    @Published var isFetched: Bool = false
     @Published var roketArray = [rroket]
     @Published var launchArray: [LaunchModel] = []
     @Published var requestRocket: [POSModel] = [POSModel.share]
@@ -53,8 +52,6 @@ class RocketViewModel: ObservableObject {
     
     func fetchLaunch() {
         launchArray = manager.decodedLaunch
-        requestRocket = manager.fetchLaunch()
-//        requestRocket = manager.$POSTLaunch
     }
     
     func sortedLaunches(model: RocketModel) -> [LaunchModel] {

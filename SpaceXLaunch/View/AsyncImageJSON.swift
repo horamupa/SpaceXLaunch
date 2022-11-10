@@ -11,11 +11,8 @@ struct AsyncImageJSON: View {
     
     @ObservedObject var viewModel: RocketViewModel
     
-//    var random = Int.random(in: 0...viewModel.roketArray[0].flickrImages.count)
-    
     var body: some View {
         
-        if viewModel.isFetched {
         AsyncImage(url: URL(string: viewModel.roketArray[0].flickrImages[0])) { phase in
                     if let image = phase.image {
                         image.resizable().scaledToFit()
@@ -26,7 +23,6 @@ struct AsyncImageJSON: View {
                     }
                 }
                 .frame(width: 200, height: 200)
-        }
     }
 }
 //
