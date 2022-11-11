@@ -42,7 +42,7 @@ struct returnModel: Codable {
     let totalDocs, offset, limit, totalPages: Int
     let page, pagingCounter: Int
     let hasPrevPage, hasNextPage: Bool
-    let prevPage: JSONNull?
+    let prevPage: Int
     let nextPage: Int
 }
 
@@ -55,7 +55,7 @@ struct Doc: Codable {
     let launchpad: String
     let flightNumber: Int
     let name, dateUTC: String
-    let dateLocal: Date
+    let dateLocal: String
     let datePrecision: String
     let upcoming: Bool
     let id: String

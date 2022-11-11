@@ -15,6 +15,7 @@ class RocketViewModel: ObservableObject {
     
     @Published var roketArray = [rroket]
     @Published var launchArray: [LaunchModel] = []
+    @Published var rocketLaunchArray: [returnModel] = []
     @Published var requestRocket: [POSModel] = [POSModel.share]
     @Published var isMetricHeight: Bool = true
     @Published var isMetricDiametr: Bool = true
@@ -52,6 +53,12 @@ class RocketViewModel: ObservableObject {
         manager.$decodedLaunch
             .sink { [weak self] launch in
                 self?.launchArray = launch
+            }
+            .store(in: &cancellables)
+        
+        manager.$returnedJSON
+            .sink { [weak self] launch in
+                self?.rocketLaunchArray = launch
             }
             .store(in: &cancellables)
     }

@@ -99,32 +99,43 @@ class DataManager: ObservableObject {
             "rocket": "5e9d0d95eda69973a809d1ec"
         ]
         
-        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
         
+        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
         // create post request
         var request = URLRequest(url: urlQuery)
         request.httpMethod = "POST"
         request.httpBody = jsonData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
+        URLSession.shared.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: returnModel.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
+            .sink { (compeletion) in
+                print("Compeletion:\(compeletion)")
+            } receiveValue: { [weak self] returnData in
+                self?.returnedJSON.append(returnData)
             }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//            guard let goodJSON = try? JSONDecoder().decode(returnModel.self, from: data)
-//            else {
-//                print("Big nono")
-//                return}
-//            print("JSON READY")
-            if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
-            }
-        }
+
         
-        task.resume()
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let data = data, error == nil else {
+//                print(error?.localizedDescription ?? "No data")
+//                return
+//            }
+//            let decoder = JSONDecoder()
+//            do {
+//
+//                let obj = try decoder.decode(returnModel.self, from: data)
+//
+//            } catch {
+//                print(error.localizedDescription)
+//                print(String(describing: error))
+//            }
+//
+//        }
+//
+//        task.resume()
         
     }
         

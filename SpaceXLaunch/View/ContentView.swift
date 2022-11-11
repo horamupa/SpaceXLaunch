@@ -21,9 +21,7 @@ struct ContentView: View {
                 ForEach(viewModel.roketArray, id: \.id) { model in
                     RoketView(model: model)
                         .tag(String(model.name))
-
             }
-            
         }
             .tabViewStyle(.page)
             .background(.black)
