@@ -48,16 +48,18 @@ class RocketViewModel: ObservableObject {
                 self?.requestRocket = launch
             }
             .store(in: &cancellables)
-    }
-    
-    func fetchLaunch() {
-        launchArray = manager.decodedLaunch
+        
+        manager.$decodedLaunch
+            .sink { [weak self] launch in
+                self?.launchArray = launch
+            }
+            .store(in: &cancellables)
     }
     
     func sortedLaunches(model: RocketModel) -> [LaunchModel] {
         let sortedArray = launchArray
-                                .filter({$0.upcoming})
-                                .filter({$0.rocket.rawValue == model.id})
+                                .filter({$0.upcoming == false})
+                                .filter({$0.rocket == model.id})
         return sortedArray
     }
     
@@ -79,7 +81,6 @@ class RocketViewModel: ObservableObject {
     init() {
         preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         setPreference()
-        fetchLaunch()
         getData()
     }
 }

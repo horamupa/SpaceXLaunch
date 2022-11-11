@@ -36,7 +36,6 @@ struct ContentView: View {
             .onAppear {
                 Task {
                     await viewModel.fetchJSON()
-                    await viewModel.fetchLaunch()
                 }
             }
     }

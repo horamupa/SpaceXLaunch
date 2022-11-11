@@ -18,39 +18,27 @@ struct RoketView: View {
                     rocketImage
                     
                     VStack {
-                            Text("\(viewModel.requestRocket.count)")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                            ForEach(viewModel.requestRocket, content: { launch in
-                                Text(launch.rocket)
-                                Text(launch.date_local)
-                            })
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                        Button {
-                            viewModel.fetchLaunch()
-                        } label: {
-                            Text("Fetch Json")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                            
-                        }
-
-                        
+                        Text(model.id)
+                            .onAppear {
+                                print(model.id)
+                            }
                         Title(name: model.name)
  
                         HScroll(model: model)
                         
                         MainInfo(model: model)
                         NavigationLink {
-                            LaunchScreenView(model: model)
+                            LaunchScreenView(model2: model)
                                 .environmentObject(viewModel)
                         } label: {
                             Text("Посмотреть запуски")
-                                .padding()
-                                .frame(width: 200, height: 50)
-                                .background(.thinMaterial)
+                                .font(.labGrotesque(.medium, size: 20))
+                                .frame(height: 55)
+                                .frame(maxWidth: .infinity)
+                                .background(.secondary)
                                 .cornerRadius(10)
+                                .padding()
+                                .padding(.horizontal)
                         }
 
                        

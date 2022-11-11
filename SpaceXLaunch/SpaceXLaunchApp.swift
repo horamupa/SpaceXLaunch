@@ -16,7 +16,8 @@ struct SpaceXLaunchApp: App {
             NavigationView(content: {
                 ContentView()
             })
-            .navigationBarHidden(true)
+//            .navigationBarHidden(true)
+//            .statusBarHidden(true)
         }
     }
 }
