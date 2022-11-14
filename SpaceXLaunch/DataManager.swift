@@ -15,7 +15,9 @@ class DataManager: ObservableObject {
     @Published var decodedLaunch: [LaunchModel] = []
     @Published var decodedLaunch2: [LaunchModel] = []
     @Published var POSTLaunch: [POSModel] = []
-    @Published var returnedJSON: [returnModel] = []
+    @Published var returnedJSON: [Doc] = []
+    @Published var returnedJSON2: [returnModel] = []
+    
     var filtredLaunch: [LaunchModel] = []
     var cansellables = Set<AnyCancellable>()
     
@@ -70,8 +72,10 @@ class DataManager: ObservableObject {
         guard
             let responce = compeletion.response as? HTTPURLResponse,
             responce.statusCode >= 200 && responce.statusCode <= 300 else {
+            print("Bad Response")
             throw URLError(.badServerResponse)
         }
+//        print("handler ok")
         return compeletion.data
     }
     
@@ -95,92 +99,43 @@ class DataManager: ObservableObject {
     
     private func apiCall() {
         let parameters: [String: Any] = [
-            "upcoming": false,
-            "rocket": "5e9d0d95eda69973a809d1ec"
+            "upcoming": false
         ]
         
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: parameters)
+            // create post request
+            var request = URLRequest(url: urlQuery)
+            request.httpMethod = "POST"
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
-        // create post request
-        var request = URLRequest(url: urlQuery)
-        request.httpMethod = "POST"
-        request.httpBody = jsonData
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         URLSession.shared.dataTaskPublisher(for: request)
-            .map(\.data)
+            .tryMap(combineHandler)
             .decode(type: returnModel.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
+//            .sink { (compeletion) in
+//                        print("Compeletion:\(compeletion)")
+//                    } receiveValue: { [weak self] (result) in
+//                        self?.returnedJSON2.append(result)
+//                    }
             .sink { (compeletion) in
                 print("Compeletion:\(compeletion)")
-            } receiveValue: { [weak self] returnData in
-                self?.returnedJSON.append(returnData)
+            } receiveValue: { [weak self] (returnData) in
+                self?.returnedJSON2.append(returnData)
+                self?.returnedJSON.append(contentsOf: returnData.docs)
             }
-
-        
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//            let decoder = JSONDecoder()
-//            do {
-//
-//                let obj = try decoder.decode(returnModel.self, from: data)
-//
-//            } catch {
-//                print(error.localizedDescription)
-//                print(String(describing: error))
-//            }
-//
-//        }
-//
-//        task.resume()
-        
+            .store(in: &cansellables)
+            DispatchQueue.main.asyncAfter(deadline: .now()+5) {
+                print(self.returnedJSON.count)
+                print(self.returnedJSON2.count)
+            }
+            
+        } catch {
+            let error = error
+            print(error.localizedDescription)
+        }
     }
-        
-        
-//
-//
-//
-//        let jsonData = try? JSONEncoder().encode(parameters)
-////        try? JSONEncoder().encode([rocketInfo.rocketSamplePOST])
-//            var request = URLRequest(url: urlQuery)
-//            request.httpMethod = "POST"
-//            request.httpBody = jsonData
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//            URLSession.shared.dataTaskPublisher(for: request)
-//                .subscribe(on: DispatchQueue.global(qos: .background))
-//                .tryMap(combineHandler)
-//                .decode(type: [rocketInfo].self, decoder: JSONDecoder())
-//                .subscribe(on: DispatchQueue.main)
-//                .sink { (completion) in
-//                    switch completion {
-//                    case .finished:
-//                        break
-//                    case .failure(let error):
-//                        print("Error to download \(error.localizedDescription)")
-//                    }
-//                } receiveValue: { [weak self] (translatedData) in
-//                    self?.newLaunch = translatedData
-//                    print("Ok")
-//                }
-//                .store(in: &cansellables)
-//        }
 
-//
-//
-//    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//        guard let data = data, error == nil else {
-//            print(error?.localizedDescription ?? "No data")
-//            return
-//        }
-//        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//        if let responseJSON = responseJSON as? [String: Any] {
-//            print(responseJSON)
-//        }
-//    }
-//
-//    task.resume()
 }

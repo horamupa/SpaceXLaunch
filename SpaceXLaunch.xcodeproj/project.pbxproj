@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D06481329226D9F00F9438A /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D06481229226D9F00F9438A /* Formatter.swift */; };
 		8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */; };
 		8D09A69028AAA5700014E075 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A68F28AAA5700014E075 /* ContentView.swift */; };
 		8D09A69228AAA5710014E075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D09A69128AAA5710014E075 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D06481229226D9F00F9438A /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		8D09A68A28AAA5700014E075 /* SpaceXLaunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceXLaunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXLaunchApp.swift; sourceTree = "<group>"; };
 		8D09A68F28AAA5700014E075 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				8DF35409290FF1C10021AF6E /* PreviewProvider.swift */,
+				8D06481229226D9F00F9438A /* Formatter.swift */,
 				8DF3540B290FF33A0021AF6E /* Fonts.swift */,
 			);
 			path = Extensions;
@@ -292,6 +295,7 @@
 				8D0B4EBC291A8CB400B97148 /* POSModel.swift in Sources */,
 				8D4568BF28ABD87000838891 /* APIServices.swift in Sources */,
 				8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */,
+				8D06481329226D9F00F9438A /* Formatter.swift in Sources */,
 				8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */,
 				8DF3540E290FF6690021AF6E /* LaunchScreenView.swift in Sources */,
 			);

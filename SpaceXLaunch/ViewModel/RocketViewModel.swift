@@ -15,7 +15,7 @@ class RocketViewModel: ObservableObject {
     
     @Published var roketArray = [rroket]
     @Published var launchArray: [LaunchModel] = []
-    @Published var rocketLaunchArray: [returnModel] = []
+    @Published var rocketLaunchArray: [Doc] = []
     @Published var requestRocket: [POSModel] = [POSModel.share]
     @Published var isMetricHeight: Bool = true
     @Published var isMetricDiametr: Bool = true
@@ -59,12 +59,13 @@ class RocketViewModel: ObservableObject {
         manager.$returnedJSON
             .sink { [weak self] launch in
                 self?.rocketLaunchArray = launch
+                print("Sink OK")
             }
             .store(in: &cancellables)
     }
     
-    func sortedLaunches(model: RocketModel) -> [LaunchModel] {
-        let sortedArray = launchArray
+    func sortedLaunches(model: RocketModel) -> [Doc] {
+        let sortedArray = rocketLaunchArray
                                 .filter({$0.upcoming == false})
                                 .filter({$0.rocket == model.id})
         return sortedArray
