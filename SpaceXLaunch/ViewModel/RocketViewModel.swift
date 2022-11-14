@@ -85,4 +85,8 @@ class RocketViewModel: ObservableObject {
         setPreference()
         getData()
     }
+    
+    func getImageURL() {
+        print(roketArray[0].flickrImages[0])
+    }
 }

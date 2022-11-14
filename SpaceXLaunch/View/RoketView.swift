@@ -65,17 +65,23 @@ struct RoketView_Previews: PreviewProvider {
 
 extension RoketView {
     private var rocketImage: some View {
-        TabView {
-            ForEach(model.flickrImages, id: \.self) { imageURL in
-                AsyncImage(url: URL(string: imageURL)) { image in
+
+        AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
                     image.resizable().scaledToFill().cornerRadius(16)
                 }
             placeholder: {
-                Text("No Image")
-            }
-            }
+                ZStack {
+                    Image("Union")
+                        .scaleEffect(2)
+                    Text("Image loading...")
+                        .foregroundColor(.white)
+                        .font(.labGrotesque(.regular, size: 16))
+                        .onTapGesture {
+                            viewModel.getImageURL()
+                        }
+                }
         }
-        .frame(height: 300)
+            .frame(minHeight: 250)
     }
 }
 
@@ -89,6 +95,9 @@ struct Title: View {
         HStack {
             Text(name)
                 .font(.labGrotesque(.medium, size: 28))
+                .onTapGesture {
+                    viewModel.getImageURL()
+                }
             Spacer()
             Button {
                 viewModel.isPreference.toggle()

@@ -14,7 +14,7 @@ struct SpaceXLaunchApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView(content: {
-                ContentView()
+                MainTabView()
             })
 //            .navigationBarHidden(true)
 //            .statusBarHidden(true)

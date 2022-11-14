@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainTabView: View {
     
     @StateObject var viewModel = RocketViewModel()
     
-//    @State var selectedTab: String = "Falcon 1"
     @State private var update = UUID()
     
     var body: some View {
@@ -43,7 +42,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainTabView()
     }
 }
 
