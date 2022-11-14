@@ -13,28 +13,24 @@ class RocketViewModel: ObservableObject {
     
     var manager = DataManager()
     
-    @Published var roketArray = [rroket]
-    @Published var launchArray: [LaunchModel] = []
+    @Published var roketArray: [RocketModel] = []
     @Published var rocketLaunchArray: [Doc] = []
-    @Published var isMetricHeight: Bool = true
-    @Published var isMetricDiametr: Bool = true
-    @Published var isMetricMass: Bool = true
-    @Published var isMetricUsefulWeight: Bool = true
     @Published var roket1 = RocketModel.share
     @Published var isPreference: Bool = false
     @Published var preferenceArray: [Bool] = [true,true,true,true]
+    @Published var isLoaded: Bool = false
     var cancellables = Set<AnyCancellable>()
     
     static var rroket = RocketModel.share 
     
     
-    
-    func fetchJSON() async {
+    // fetch with async
+    func fetchRocket() async {
         do {
-            if let decodedJSON = try await manager.fetchJSON() {
+            if let decodedJSON = try await manager.DownloadRockets() {
                 await MainActor.run(body: {
                     self.roketArray = decodedJSON
-                    print("rocket array OK")
+                    self.isLoaded = true
                 })
             }
         } catch {
@@ -42,13 +38,8 @@ class RocketViewModel: ObservableObject {
         }
     }
     
-    func getData() {
-        
-        manager.$decodedLaunch
-            .sink { [weak self] launch in
-                self?.launchArray = launch
-            }
-            .store(in: &cancellables)
+    //fetch with combine
+    func fetchLaunch() {
         
         manager.$returnedJSON
             .sink { [weak self] launch in
@@ -56,13 +47,6 @@ class RocketViewModel: ObservableObject {
                 print("Sink OK")
             }
             .store(in: &cancellables)
-    }
-    
-    func sortedLaunches(model: RocketModel) -> [Doc] {
-        let sortedArray = rocketLaunchArray
-                                .filter({$0.upcoming == false})
-                                .filter({$0.rocket == model.id})
-        return sortedArray
     }
     
     func savePreference() {
@@ -78,15 +62,10 @@ class RocketViewModel: ObservableObject {
         self.preferenceArray = decodedData
     }
     
-    
-    
     init() {
-        preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
+//        preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         setPreference()
-        getData()
+        fetchLaunch()
     }
-    
-    func getImageURL() {
-        print(roketArray[0].flickrImages[0])
-    }
+
 }

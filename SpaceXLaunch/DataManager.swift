@@ -12,12 +12,9 @@ class DataManager: ObservableObject {
     
 //    static var instance = DataManager()
     
-    @Published var decodedLaunch: [LaunchModel] = []
-    @Published var decodedLaunch2: [LaunchModel] = []
     @Published var returnedJSON: [Doc] = []
-    @Published var returnedJSON2: [returnModel] = []
+    @Published var returnedJSON2: [ReturnedLaunchModel] = []
     
-    var filtredLaunch: [LaunchModel] = []
     var cansellables = Set<AnyCancellable>()
     
     private var urlRocket = URL(string: "https://api.spacexdata.com/v4/rockets")!
@@ -25,11 +22,10 @@ class DataManager: ObservableObject {
     private var urlQuery = URL(string: "https://api.spacexdata.com/v4/launches/query")!
     
     init() {
-//        fetchRocket()
-        apiCall()
+        downloadLaunchPOST()
     }
     
-    func fetchJSON() async throws -> [RocketModel]? {
+    func DownloadRockets() async throws -> [RocketModel]? {
         
         do {
             let (data, response) = try await URLSession(configuration: .default).data(from: urlRocket)
@@ -41,43 +37,8 @@ class DataManager: ObservableObject {
         
     }
     
-    func decodeJsonHandler(data: Data?, response: URLResponse?) throws -> [RocketModel]? {
-        guard
-            let data = data,
-            let json = try? JSONDecoder().decode([RocketModel].self, from: data),
-            let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
-            return nil
-        }
-        return json
-    }
-    
-//    func fetchRocket() {
-//
-//        URLSession.shared.dataTaskPublisher(for: urlLaunch)
-//            .subscribe(on: DispatchQueue.global(qos: .background))
-//            .receive(on: DispatchQueue.main)
-//            .tryMap(combineHandler)
-//            .decode(type: [LaunchModel].self, decoder: JSONDecoder())
-//            .sink { (compeletion) in
-//                print("Compeletion:\(compeletion)")
-//            } receiveValue: { [weak self] (result) in
-//                self?.decodedLaunch = result
-//            }
-//            .store(in: &cansellables)
-//    }
-    
-    func combineHandler(compeletion: URLSession.DataTaskPublisher.Output ) throws -> Data {
-        guard
-            let responce = compeletion.response as? HTTPURLResponse,
-            responce.statusCode >= 200 && responce.statusCode <= 300 else {
-            print("Bad Response")
-            throw URLError(.badServerResponse)
-        }
-//        print("handler ok")
-        return compeletion.data
-    }
-    
-    private func apiCall() {
+    private func downloadLaunchPOST() {
+        
         let parameters: [String: Any] = [
             "upcoming": false
         ]
@@ -93,13 +54,8 @@ class DataManager: ObservableObject {
         
         URLSession.shared.dataTaskPublisher(for: request)
             .tryMap(combineHandler)
-            .decode(type: returnModel.self, decoder: JSONDecoder())
+            .decode(type: ReturnedLaunchModel.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
-//            .sink { (compeletion) in
-//                        print("Compeletion:\(compeletion)")
-//                    } receiveValue: { [weak self] (result) in
-//                        self?.returnedJSON2.append(result)
-//                    }
             .sink { (compeletion) in
                 print("Compeletion:\(compeletion)")
             } receiveValue: { [weak self] (returnData) in
@@ -107,15 +63,46 @@ class DataManager: ObservableObject {
                 self?.returnedJSON.append(contentsOf: returnData.docs)
             }
             .store(in: &cansellables)
-            DispatchQueue.main.asyncAfter(deadline: .now()+5) {
-                print(self.returnedJSON.count)
-                print(self.returnedJSON2.count)
-            }
             
         } catch {
             let error = error
             print(error.localizedDescription)
         }
     }
+    
+    private func decodeJsonHandler(data: Data?, response: URLResponse?) throws -> [RocketModel]? {
+        guard
+            let data = data,
+            let json = try? JSONDecoder().decode([RocketModel].self, from: data),
+            let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
+            return nil
+        }
+        return json
+    }
+    
+    private func combineHandler(compeletion: URLSession.DataTaskPublisher.Output ) throws -> Data {
+        guard
+            let responce = compeletion.response as? HTTPURLResponse,
+            responce.statusCode >= 200 && responce.statusCode <= 300 else {
+            print("Bad Response")
+            throw URLError(.badServerResponse)
+        }
+        return compeletion.data
+    }
+    
+    //    func fetchRocket() {
+    //
+    //        URLSession.shared.dataTaskPublisher(for: urlLaunch)
+    //            .subscribe(on: DispatchQueue.global(qos: .background))
+    //            .receive(on: DispatchQueue.main)
+    //            .tryMap(combineHandler)
+    //            .decode(type: [LaunchModel].self, decoder: JSONDecoder())
+    //            .sink { (compeletion) in
+    //                print("Compeletion:\(compeletion)")
+    //            } receiveValue: { [weak self] (result) in
+    //                self?.decodedLaunch = result
+    //            }
+    //            .store(in: &cansellables)
+    //    }
 
 }

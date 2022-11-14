@@ -11,30 +11,32 @@ struct MainTabView: View {
     
     @StateObject var viewModel = RocketViewModel()
     
-    @State private var update = UUID()
+//    @State private var update = UUID()
     
     var body: some View {
-        
-        TabView {
-            
+        if viewModel.isLoaded {
+            TabView {
                 ForEach(viewModel.roketArray, id: \.id) { model in
                     RoketView(model: model)
                         .tag(String(model.name))
+                }
             }
-        }
             .tabViewStyle(.page)
             .background(.black)
             .ignoresSafeArea()
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             .sheet(isPresented: $viewModel.isPreference) {
-                    Preference(viewModel: viewModel)
+                Preference(viewModel: viewModel)
             }
             .environmentObject(viewModel)
-            .onAppear {
-                Task {
-                    await viewModel.fetchJSON()
+        } else {
+            LoadingView()
+                .onAppear {
+                    Task {
+                        await viewModel.fetchRocket()
+                    }
                 }
-            }
+        }
     }
     
 }

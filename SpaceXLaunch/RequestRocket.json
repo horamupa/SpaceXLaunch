@@ -1,9 +1,0 @@
-{
-   "query":{
-      "upcoming":false,
-      "rocket": "5e9d0d95eda69973a809d1ec"
-   },
-   "options":{
-      "limit":5
-   }
-}

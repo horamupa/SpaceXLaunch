@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 // MARK: - LaunchSpaceX
-struct returnModel: Codable {
+struct ReturnedLaunchModel: Codable {
     let docs: [Doc]
     let totalDocs, offset, limit, totalPages: Int?
     let page, pagingCounter: Int?

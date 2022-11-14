@@ -66,22 +66,12 @@ struct LaunchScreenView: View {
             }
             .font(.labGrotesque(.medium, size: 20))
             .navigationTitle("\(model.name)")
-//            .statusBarHidden(false)
-        }
-//        .navigationBarHidden(false)
-        .onAppear {
-            fetchRocketModel()
         }
     }
     init(model2: RocketModel) {
-//        fetchRocketModel()
         self.model = model2
     }
     
-    func fetchRocketModel() {
-        self.sortedArray = vm.sortedLaunches(model: model)
-        print("launchFetched")
-    }
 }
 
 struct LaunchScreenView_Previews: PreviewProvider {

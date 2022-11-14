@@ -16,6 +16,7 @@ struct RoketView: View {
                 VStack(spacing: 20) {
                     
                     rocketImage
+                            .frame(minHeight: 320)
                     
                     VStack {
                        
@@ -67,21 +68,23 @@ extension RoketView {
     private var rocketImage: some View {
 
         AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
-                    image.resizable().scaledToFill().cornerRadius(16)
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .cornerRadius(16)
                 }
             placeholder: {
                 ZStack {
                     Image("Union")
-                        .scaleEffect(2)
+                        .resizable()
+                        .padding()
+                        .frame(width: 150, height: 150)
+//                        .scaleEffect(2)
                     Text("Image loading...")
                         .foregroundColor(.white)
                         .font(.labGrotesque(.regular, size: 16))
-                        .onTapGesture {
-                            viewModel.getImageURL()
-                        }
                 }
         }
-            .frame(minHeight: 250)
     }
 }
 
@@ -95,9 +98,6 @@ struct Title: View {
         HStack {
             Text(name)
                 .font(.labGrotesque(.medium, size: 28))
-                .onTapGesture {
-                    viewModel.getImageURL()
-                }
             Spacer()
             Button {
                 viewModel.isPreference.toggle()
