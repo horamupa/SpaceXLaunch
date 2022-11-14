@@ -79,7 +79,6 @@ extension RoketView {
                         .resizable()
                         .padding()
                         .frame(width: 150, height: 150)
-//                        .scaleEffect(2)
                     Text("Image loading...")
                         .foregroundColor(.white)
                         .font(.labGrotesque(.regular, size: 16))
@@ -160,23 +159,23 @@ struct HScroll: View {
         ScrollView(.horizontal) {
             HStack {
                 HScrollInfo(
-                    textUp: viewModel.preferenceArray[0] ? model.height.meters.formatter1dec() : model.height.feet.formatter1dec(),
-                    textDown: "Высота, \(viewModel.preferenceArray[0] ? "m" : "ft")")
+                    textUp: viewModel.preferenceArray[0] ? model.height.feet.formatter1dec() : model.height.meters.formatter1dec(),
+                    textDown: "Высота, \(viewModel.preferenceArray[0] ? "ft" : "m")")
                 HScrollInfo(
                     textUp: viewModel.preferenceArray[1] ?
-                        model.diameter.meters.formatter1dec() :
-                        model.diameter.feet.formatter1dec(),
-                    textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "m" : "ft")")
+                        model.diameter.feet.formatter1dec() :
+                        model.diameter.meters.formatter1dec(),
+                    textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "ft" : "m")")
                 HScrollInfo(
                     textUp: viewModel.preferenceArray[2] ?
-                        model.mass.kg.formatter3dec() :
-                        model.mass.lb.formatter3dec(),
-                    textDown: "Масса, \(viewModel.preferenceArray[2] ? "kg" : "lb")")
+                        model.mass.lb.formatter3dec() :
+                        model.mass.kg.formatter3dec(),
+                    textDown: "Масса, \(viewModel.preferenceArray[2] ? "lb" : "kg")")
                 HScrollInfo(
                     textUp: viewModel.preferenceArray[3] ?
-                    model.payloadWeights[0].kg.formatter3dec() :
-                        model.payloadWeights[0].lb.formatter3dec() ,
-                    textDown: "Нагрузка, \(viewModel.preferenceArray[3] ? "kg" : "lb")")
+                    model.payloadWeights[0].lb.formatter3dec() :
+                        model.payloadWeights[0].kg.formatter3dec() ,
+                    textDown: "Нагрузка, \(viewModel.preferenceArray[3] ? "lb" : "kg")")
             }
             .background(.black)
             .padding()

@@ -16,29 +16,32 @@ struct Preference: View {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                VStack {
-                    Toggle(isOn: $viewModel.preferenceArray[0]) {
-                        Text(viewModel.preferenceArray[0] ? "Высота (m)" : "Высота (ft)")
-                            }
-                    .toggleStyle(.switch)
-                            .padding()
-                    Toggle(isOn: $viewModel.preferenceArray[1]) {
-                        Text(viewModel.preferenceArray[1] ? "Диаметр (m)" : "Диаметр (ft)")
-                            }
-                            .toggleStyle(SwitchToggleStyle())
-                            .padding()
-                    Toggle(isOn: $viewModel.preferenceArray[2]) {
-                        Text(viewModel.preferenceArray[2] ? "Масса (kg)" : "Масса (lb)")
-                            }
-                            .toggleStyle(SwitchToggleStyle())
-                            .padding()
-                    Toggle(isOn: $viewModel.preferenceArray[3]) {
-                        Text(viewModel.preferenceArray[3] ? "Полезная нагрузка (kg)" : "Полезная нагрузка (lb)")
-                            }
-                            .toggleStyle(SwitchToggleStyle())
-                            .padding()
+                
+                VStack(spacing: 25) {
+                
+                    Toggle(isOn: $viewModel.preferenceArray[0], label: {
+                        Text("Высота")
+                    })
+                    .toggleStyle(MetrFootStyle())
+                    
+                    Toggle(isOn: $viewModel.preferenceArray[1], label: {
+                        Text("Диаметр")
+                    })
+                    .toggleStyle(MetrFootStyle())
+                    
+                    Toggle(isOn: $viewModel.preferenceArray[2], label: {
+                        Text("Масса")
+                    })
+                    .toggleStyle(KgLbStyle())
+                   
+                    Toggle(isOn: $viewModel.preferenceArray[3], label: {
+                        Text("Полезная нагрузка")
+                    })
+                    .toggleStyle(KgLbStyle())
+                    
                     Spacer()
                 }
+                .padding(40)
                 .font(.labGrotesque(.regular, size: 18))
                 .foregroundColor(.white)
             }
@@ -62,9 +65,7 @@ struct Preference: View {
                 viewModel.savePreference()
             }
         }
-        
     }
-    
 }
 
 struct Preference_Previews: PreviewProvider {

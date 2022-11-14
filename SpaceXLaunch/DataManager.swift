@@ -10,8 +10,6 @@ import Combine
 
 class DataManager: ObservableObject {
     
-//    static var instance = DataManager()
-    
     @Published var returnedJSON: [Doc] = []
     @Published var returnedJSON2: [ReturnedLaunchModel] = []
     
