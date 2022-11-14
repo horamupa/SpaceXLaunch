@@ -7,19 +7,13 @@ import SwiftUI
 
 struct RocketModel: Codable, Identifiable, Hashable {
     let name: String
-//    let active: Bool
-//    let stages, boosters, , successRatePct: Int
-    let costPerLaunch: Int
+    let costPerLaunch: Double
     let firstFlight, country, company: String
-//    let wikipedia: String
-//    let spaceXDescription: String
     let id: String
     let mass: Mass
     let height, diameter: Diameter
     let firstStage: FirstStage
     let secondStage: SecondStage
-//    let engines: Engines
-//    let landingLegs: LandingLegs
     let payloadWeights: [PayloadWeight]
     let flickrImages: [String]
     
@@ -35,17 +29,13 @@ struct RocketModel: Codable, Identifiable, Hashable {
         case payloadWeights = "payload_weights"
         case flickrImages = "flickr_images"
         case name
-//        case name, type, active, stages, boosters
         case costPerLaunch = "cost_per_launch"
-//        case successRatePct = "success_rate_pct"
         case firstFlight = "first_flight"
         case country, company
-//        , wikipedia
-//        case spaceXDescription = "description"
         case id
     }
     
-    init(id: String = "Rocket", images: [String] = [""], name: String = "Roket", firstStage: FirstStage = FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), height: Diameter, diameter: Diameter, mass: Mass, payloadWeights: [PayloadWeight], firstFlight: String, country: String, company: String, costPerLaunch: Int, secondStage: SecondStage) {
+    init(id: String = "Rocket", images: [String] = [""], name: String = "Roket", firstStage: FirstStage = FirstStage(engines: 3, fuelAmountTons: 3, burnTimeSEC: 3), height: Diameter, diameter: Diameter, mass: Mass, payloadWeights: [PayloadWeight], firstFlight: String, country: String, company: String, costPerLaunch: Double, secondStage: SecondStage) {
         self.id = id
         self.flickrImages = images
         self.name = name
@@ -65,38 +55,26 @@ struct RocketModel: Codable, Identifiable, Hashable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.id = try container.decode(String.self, forKey: .id)
             self.name = try container.decode(String.self, forKey: .name)
-//            self.active = try container.decode(Bool.self, forKey: .active)
-//            self.stages = try container.decode(Int.self, forKey: .stages)
-//            self.boosters = try container.decode(Int.self, forKey: .boosters)
-//            self.costPerLaunch = try container.decode(Int.self, forKey: .costPerLaunch)
-//            self.successRatePct = try container.decode(Int.self, forKey: .successRatePct)
             self.firstFlight = try container.decode(String.self, forKey: .firstFlight)
             self.country = try container.decode(String.self, forKey: .country)
             self.company = try container.decode(String.self, forKey: .company)
-//            self.wikipedia = try container.decode(String.self, forKey: .wikipedia)
-//            self.spaceXDescription = try container.decode(String.self, forKey: .spaceXDescription)
-        
             self.firstStage = try container.decode(FirstStage.self, forKey: .firstStage)
             self.flickrImages = try container.decode([String].self, forKey: .flickrImages)
             self.mass = try container.decode(Mass.self, forKey: .mass)
             self.height = try container.decode(Diameter.self, forKey: .height)
             self.diameter = try container.decode(Diameter.self, forKey: .diameter)
             self.payloadWeights = try container.decode([PayloadWeight].self, forKey: .payloadWeights)
-        self.secondStage = try container.decode(SecondStage.self, forKey: .secondStage)
-//        let engines: Engines
-//        let landingLegs: LandingLegs
-            self.costPerLaunch = try container.decode(Int.self, forKey: .costPerLaunch)
+            self.secondStage = try container.decode(SecondStage.self, forKey: .secondStage)
+            self.costPerLaunch = try container.decode(Double.self, forKey: .costPerLaunch)
 
         }
     
     
 }
 
-
-//
 //// MARK: - Diameter
 struct Diameter: Codable, Hashable {
-    let meters, feet: Double?
+    let meters, feet: Double
 }
 
 // MARK: - Engines
@@ -158,13 +136,13 @@ struct LandingLegs: Codable, Hashable {
 
 // MARK: - Mass
 struct Mass: Codable, Hashable {
-    let kg, lb: Int
+    let kg, lb: Double
 }
 
 // MARK: - PayloadWeight
 struct PayloadWeight: Codable, Hashable {
     let id, name: String
-    let kg, lb: Int
+    let kg, lb: Double
 }
 
 // MARK: - SecondStage

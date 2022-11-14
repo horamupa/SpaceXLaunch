@@ -13,20 +13,18 @@ struct RoketView: View {
             Color(.black)
                 .ignoresSafeArea()
             ScrollView {
-                VStack(spacing: 0) {
+                VStack(spacing: 20) {
                     
                     rocketImage
                     
                     VStack {
-                        Text(model.id)
-                            .onAppear {
-                                print(model.id)
-                            }
+                       
                         Title(name: model.name)
  
                         HScroll(model: model)
                         
                         MainInfo(model: model)
+                        
                         NavigationLink {
                             LaunchScreenView(model2: model)
                                 .environmentObject(viewModel)
@@ -40,26 +38,17 @@ struct RoketView: View {
                                 .padding()
                                 .padding(.horizontal)
                         }
-
-                       
-                        Text(" ")
-                            .frame(height: 50)
                     }
-                    
                     .foregroundColor(.white)
-//                    .frame(width: screen.width)
                     .background(.black)
                     .cornerRadius(32)
-                    .offset(y: -30)
+                    .offset(y: -50)
                 }
-//                .frame(height: screen.height)
             }
             .navigationBarHidden(true)
             .ignoresSafeArea()
         }
-        
     }
-    
 }
 
 
@@ -76,15 +65,17 @@ struct RoketView_Previews: PreviewProvider {
 
 extension RoketView {
     private var rocketImage: some View {
-        AsyncImage(url: URL(string: model.flickrImages.first ?? "https://cdn.mos.cms.futurecdn.net/oQcnKsvzui8X2ebAq3BvMM.jpg")) { image in
-            image.resizable().scaledToFill().cornerRadius(16)
+        TabView {
+            ForEach(model.flickrImages, id: \.self) { imageURL in
+                AsyncImage(url: URL(string: imageURL)) { image in
+                    image.resizable().scaledToFill().cornerRadius(16)
                 }
-                    placeholder: {
-                        Image("Pic2")
-                            .resizable()
-                            .scaledToFill()
-                            .cornerRadius(16)
-                    }
+            placeholder: {
+                Text("No Image")
+            }
+            }
+        }
+        .frame(height: 300)
     }
 }
 
@@ -102,7 +93,7 @@ struct Title: View {
             Button {
                 viewModel.isPreference.toggle()
             } label: {
-                Image(systemName: "gearshape")
+                Image("Setting")
                     .resizable()
                     .frame(width: 32, height: 32)
             }
@@ -118,7 +109,7 @@ struct Title: View {
 
 struct HScrollInfo: View {
     
-    var textUp: Int
+    var textUp: String
     var textDown: String
     
     var body: some View {
@@ -159,17 +150,30 @@ struct HScroll: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                HScrollInfo(textUp: viewModel.preferenceArray[0] ? Int(model.height.meters!) : Int(model.height.feet!), textDown: "Высота, \(viewModel.preferenceArray[0] ? "m" : "ft")")
-                HScrollInfo(textUp: viewModel.preferenceArray[1] ? Int(model.diameter.meters!) : Int(model.diameter.feet!), textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "m" : "ft")")
-                HScrollInfo(textUp: viewModel.preferenceArray[2] ? model.mass.kg : model.mass.lb, textDown: "Масса, \(viewModel.preferenceArray[2] ? "kg" : "lb")")
-                HScrollInfo(textUp: viewModel.preferenceArray[3] ? model.payloadWeights[0].kg : model.payloadWeights[0].lb , textDown: "Полезная нагрузка, \(viewModel.preferenceArray[3] ? "kg" : "lb")")
+                HScrollInfo(
+                    textUp: viewModel.preferenceArray[0] ? model.height.meters.formatter1dec() : model.height.feet.formatter1dec(),
+                    textDown: "Высота, \(viewModel.preferenceArray[0] ? "m" : "ft")")
+                HScrollInfo(
+                    textUp: viewModel.preferenceArray[1] ?
+                        model.diameter.meters.formatter1dec() :
+                        model.diameter.feet.formatter1dec(),
+                    textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "m" : "ft")")
+                HScrollInfo(
+                    textUp: viewModel.preferenceArray[2] ?
+                        model.mass.kg.formatter3dec() :
+                        model.mass.lb.formatter3dec(),
+                    textDown: "Масса, \(viewModel.preferenceArray[2] ? "kg" : "lb")")
+                HScrollInfo(
+                    textUp: viewModel.preferenceArray[3] ?
+                    model.payloadWeights[0].kg.formatter3dec() :
+                        model.payloadWeights[0].lb.formatter3dec() ,
+                    textDown: "Нагрузка, \(viewModel.preferenceArray[3] ? "kg" : "lb")")
             }
             .background(.black)
             .padding()
         }
         .background(.black)
     }
-    
 }
 
 struct RegularInfoView: View {
@@ -194,26 +198,22 @@ struct RegularInfoView: View {
 struct MainInfo: View {
     
     @State var model: RocketModel
-    var dateStr: Date { dateFormat() }
+//    var dateStr: Date { dateFormat() }
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading, spacing: 15) {
+        VStack(spacing: 30) {
+            VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text("Первый запуск")
                     Spacer()
-                    Text(dateStr, style: .date)
+                    Text(dateFormat())
                 }
-                RegularInfoView(textLeft: "Страна", textRight: model.company)
-                RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch.formatted(.currency(code: "USD"))))
+                RegularInfoView(textLeft: "Страна", textRight: model.country)
+                RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch.formatUsingAbbrevation()))
                 
             }
             .font(.custom("LabGrotesque-Regular", size: 16))
             .padding(.horizontal, 20)
-            
-            
-            Spacer()
-            Spacer()
             
             VStack(alignment: .leading, spacing: 15) {
                 Text("ПЕРВАЯ СТУПЕНЬ")
@@ -243,8 +243,6 @@ struct MainInfo: View {
             .foregroundColor(.white)
             .font(.custom("LabGrotesque-Regular", size: 16))
             .padding(.horizontal, 20)
-            Spacer()
-            Spacer()
             
             VStack(alignment: .leading, spacing: 15) {
                 Text("ВТОРАЯ СТУПЕНЬ")
@@ -277,11 +275,11 @@ struct MainInfo: View {
         }
     }
     
-    func dateFormat() -> Date {
+    func dateFormat() -> String {
         let dateString = model.firstFlight
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let goodDate = dateFormatter.date(from: dateString) ?? Date.now
-        return goodDate
+        return goodDate.formatted(.dateTime.day().month(.wide).year())
     }
 }

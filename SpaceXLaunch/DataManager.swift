@@ -14,7 +14,6 @@ class DataManager: ObservableObject {
     
     @Published var decodedLaunch: [LaunchModel] = []
     @Published var decodedLaunch2: [LaunchModel] = []
-    @Published var POSTLaunch: [POSModel] = []
     @Published var returnedJSON: [Doc] = []
     @Published var returnedJSON2: [returnModel] = []
     
@@ -27,7 +26,6 @@ class DataManager: ObservableObject {
     
     init() {
 //        fetchRocket()
-        fetchLaunch()
         apiCall()
     }
     
@@ -77,24 +75,6 @@ class DataManager: ObservableObject {
         }
 //        print("handler ok")
         return compeletion.data
-    }
-    
-    func fetchLaunch() {
-
-            let decoder = JSONDecoder()
-
-            URLSession.shared.dataTaskPublisher(for: urlLaunch)
-                .retry(1)
-                .map(\.data)
-                .decode(type: [POSModel].self, decoder: decoder)
-                .replaceError(with: [POSModel.share])
-                .receive(on: DispatchQueue.main)
-                .sink { (compeletion) in
-                    print("Compeletion:\(compeletion)")
-                } receiveValue: { [weak self] (result) in
-                    self?.POSTLaunch = result
-                }
-                .store(in: &cansellables)
     }
     
     private func apiCall() {

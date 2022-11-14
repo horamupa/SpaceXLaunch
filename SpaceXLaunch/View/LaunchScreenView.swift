@@ -20,7 +20,7 @@ struct LaunchScreenView: View {
             ScrollView {
                 VStack {
                     
-//                    if sortedArray.count > 0 {
+                    if sortedArray.count > 0 {
                         ForEach(sortedArray) { launch in
                             HStack {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -55,13 +55,13 @@ struct LaunchScreenView: View {
                             .padding(.horizontal)
                         }
                         .padding(.vertical)
-//                    }
-//                    else {
-//                        Text("Запусков за год небыло")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.white)
-//                            .padding(.top, 200)
-//                    }
+                    }
+                    else {
+                        Text("Запусков за год небыло")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding(.top, 200)
+                    }
                 }
             }
             .font(.labGrotesque(.medium, size: 20))
