@@ -202,7 +202,7 @@ struct RegularInfoView: View {
     
 }
 
-
+#warning("transfer to components")
 struct MainInfo: View {
     
     @State var model: RocketModel

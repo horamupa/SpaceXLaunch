@@ -23,18 +23,19 @@ class DataManager: ObservableObject {
         downloadLaunchPOST()
     }
     
+    /// Download JSON with Rocket Info using async
     func DownloadRockets() async throws -> [RocketModel]? {
         
         do {
             let (data, response) = try await URLSession(configuration: .default).data(from: urlRocket)
-            let jsonData = try decodeJsonHandler(data: data, response: response)
+            let jsonData = try responseHandler(data: data, response: response)
             return jsonData
         } catch {
             throw error
         }
-        
     }
     
+    /// Download JSON with Launch Info using POST request and Combine
     private func downloadLaunchPOST() {
         
         let parameters: [String: Any] = [
@@ -68,7 +69,8 @@ class DataManager: ObservableObject {
         }
     }
     
-    private func decodeJsonHandler(data: Data?, response: URLResponse?) throws -> [RocketModel]? {
+    /// Regular URLResponse handler
+    private func responseHandler(data: Data?, response: URLResponse?) throws -> [RocketModel]? {
         guard
             let data = data,
             let json = try? JSONDecoder().decode([RocketModel].self, from: data),
@@ -78,6 +80,7 @@ class DataManager: ObservableObject {
         return json
     }
     
+    /// Combine response handler
     private func combineHandler(compeletion: URLSession.DataTaskPublisher.Output ) throws -> Data {
         guard
             let responce = compeletion.response as? HTTPURLResponse,
@@ -88,19 +91,19 @@ class DataManager: ObservableObject {
         return compeletion.data
     }
     
-    //    func fetchRocket() {
-    //
-    //        URLSession.shared.dataTaskPublisher(for: urlLaunch)
-    //            .subscribe(on: DispatchQueue.global(qos: .background))
-    //            .receive(on: DispatchQueue.main)
-    //            .tryMap(combineHandler)
-    //            .decode(type: [LaunchModel].self, decoder: JSONDecoder())
-    //            .sink { (compeletion) in
-    //                print("Compeletion:\(compeletion)")
-    //            } receiveValue: { [weak self] (result) in
-    //                self?.decodedLaunch = result
-    //            }
-    //            .store(in: &cansellables)
-    //    }
+//        func fetchRocket() {
+//
+//            URLSession.shared.dataTaskPublisher(for: urlLaunch)
+//                .subscribe(on: DispatchQueue.global(qos: .background))
+//                .receive(on: DispatchQueue.main)
+//                .tryMap(combineHandler)
+//                .decode(type: [ReturnedLaunchModel].self, decoder: JSONDecoder())
+//                .sink { (compeletion) in
+//                    print("Compeletion:\(compeletion)")
+//                } receiveValue: { [weak self] (result) in
+//                    self?.decodedLaunch = result
+//                }
+//                .store(in: &cansellables)
+//        }
 
 }
