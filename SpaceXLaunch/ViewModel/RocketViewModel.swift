@@ -59,7 +59,7 @@ class RocketViewModel: ObservableObject {
     init() {
 //        preferenceArray = [isMetricHeight, isMetricDiametr, isMetricMass, isMetricUsefulWeight]
         setPreference()
-        fetchLaunch()
+//        fetchLaunch()
     }
 
 }
