@@ -10,8 +10,14 @@ import Combine
 
 class DataManager: ObservableObject {
     
-    @Published var returnedJSON: [Doc] = []
-    @Published var returnedJSON2: [ReturnedLaunchModel] = []
+    static var shared = DataManager()
+    
+    private init() {
+        downloadLaunchPOST()
+    }
+    
+    @Published var returnedLaunches: [Doc] = []
+    @Published var returnedLaunchData: [ReturnedLaunchModel] = []
     
     var cansellables = Set<AnyCancellable>()
     
@@ -19,9 +25,6 @@ class DataManager: ObservableObject {
     private var urlLaunch = URL(string: "https://api.spacexdata.com/v4/launches")!
     private var urlQuery = URL(string: "https://api.spacexdata.com/v4/launches/query")!
     
-    init() {
-        downloadLaunchPOST()
-    }
     
     /// Download JSON with Rocket Info using async
     func DownloadRockets() async throws -> [RocketModel]? {
@@ -58,8 +61,8 @@ class DataManager: ObservableObject {
             .sink { (compeletion) in
                 print("Compeletion:\(compeletion)")
             } receiveValue: { [weak self] (returnData) in
-                self?.returnedJSON2.append(returnData)
-                self?.returnedJSON.append(contentsOf: returnData.docs)
+                self?.returnedLaunchData.append(returnData)
+                self?.returnedLaunches.append(contentsOf: returnData.docs)
             }
             .store(in: &cansellables)
             

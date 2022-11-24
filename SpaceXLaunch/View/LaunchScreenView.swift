@@ -9,9 +9,8 @@ import SwiftUI
 
 struct LaunchScreenView: View {
     
-    @EnvironmentObject var vm: RocketViewModel
-    @State var model: RocketModel
-    @State var sortedArray: [Doc] = []
+    @StateObject var vm = LaunchScreenViewModel()
+    var model: RocketModel
     
     var body: some View {
         ZStack {
@@ -19,9 +18,8 @@ struct LaunchScreenView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack {
-                    
-                    if sortedArray.count > 0 {
-                        ForEach(sortedArray) { launch in
+                    if vm.launchArray.count > 0 {
+                        ForEach(vm.launchArray) { launch in
                             HStack {
                                 VStack(alignment: .leading, spacing: 10) {
                                     Text("\(launch.name)")

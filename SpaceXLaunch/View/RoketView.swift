@@ -16,7 +16,6 @@ struct RoketView: View {
                 VStack(spacing: 20) {
                     
                     rocketImage
-                            .frame(minHeight: 320)
                     
                     VStack {
                        
@@ -66,24 +65,27 @@ struct RoketView_Previews: PreviewProvider {
 
 extension RoketView {
     private var rocketImage: some View {
-
-        AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .cornerRadius(16)
-                }
-            placeholder: {
-                ZStack {
-                    Image("Union")
-                        .resizable()
-                        .padding()
-                        .frame(width: 150, height: 150)
-                    Text("Image loading...")
-                        .foregroundColor(.white)
-                        .font(.labGrotesque(.regular, size: 16))
-                }
-        }
+        
+        DownloadImageView(url: model.flickrImages.first!)
+            .scaledToFill()
+            .frame(minHeight: 320)
+//        AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
+//                    image
+//                        .resizable()
+//                        .scaledToFill()
+//                        .cornerRadius(16)
+//                }
+//            placeholder: {
+//                ZStack {
+//                    Image("Union")
+//                        .resizable()
+//                        .padding()
+//                        .frame(width: 150, height: 150)
+//                    Text("Image loading...")
+//                        .foregroundColor(.white)
+//                        .font(.labGrotesque(.regular, size: 16))
+//                }
+//        }
     }
 }
 

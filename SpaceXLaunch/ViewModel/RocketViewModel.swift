@@ -11,7 +11,7 @@ import Combine
 class RocketViewModel: ObservableObject {
     
     
-    var manager = DataManager()
+    var manager = DataManager.shared
     
     @Published var roketArray: [RocketModel] = []
     @Published var rocketLaunchArray: [Doc] = []
@@ -39,15 +39,7 @@ class RocketViewModel: ObservableObject {
         }
     }
     
-    /// sink rocketLaunchArray from FileManager with Combine
-    func fetchLaunch() {
-        manager.$returnedJSON
-            .sink { [weak self] launch in
-                self?.rocketLaunchArray = launch
-                print("Sink OK")
-            }
-            .store(in: &cancellables)
-    }
+    
     
     /// save metric/american style preference
     func savePreference() {

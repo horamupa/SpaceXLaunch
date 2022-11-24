@@ -32,6 +32,10 @@
 		8D4568BD28ABC9E300838891 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4568BC28ABC9E300838891 /* RocketModel.swift */; };
 		8D86973128AD026400082DA7 /* RocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D86973028AD026400082DA7 /* RocketViewModel.swift */; };
 		8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */; };
+		8DDCE7C5292F9A610084150B /* DownloadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7C4292F9A610084150B /* DownloadImageView.swift */; };
+		8DDCE7C7292F9AB50084150B /* DownloadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7C6292F9AB50084150B /* DownloadImageViewModel.swift */; };
+		8DDCE7CA292F9E250084150B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7C9292F9E250084150B /* CacheManager.swift */; };
+		8DDCE7CC292FA70F0084150B /* LaunchScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7CB292FA70F0084150B /* LaunchScreenViewModel.swift */; };
 		8DDEAE7828B7950000B5CD73 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDEAE7728B7950000B5CD73 /* PreferenceView.swift */; };
 		8DF3540A290FF1C10021AF6E /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF35409290FF1C10021AF6E /* PreviewProvider.swift */; };
 		8DF3540C290FF33A0021AF6E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3540B290FF33A0021AF6E /* Fonts.swift */; };
@@ -66,6 +70,10 @@
 		8D4568BC28ABC9E300838891 /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		8D86973028AD026400082DA7 /* RocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewModel.swift; sourceTree = "<group>"; };
 		8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoketView.swift; sourceTree = "<group>"; };
+		8DDCE7C4292F9A610084150B /* DownloadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageView.swift; sourceTree = "<group>"; };
+		8DDCE7C6292F9AB50084150B /* DownloadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageViewModel.swift; sourceTree = "<group>"; };
+		8DDCE7C9292F9E250084150B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		8DDCE7CB292FA70F0084150B /* LaunchScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewModel.swift; sourceTree = "<group>"; };
 		8DDEAE7728B7950000B5CD73 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		8DF35409290FF1C10021AF6E /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		8DF3540B290FF33A0021AF6E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -87,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				8D0648162922A29E00F9438A /* CheckmarkToggleStyle.swift */,
+				8DDCE7C4292F9A610084150B /* DownloadImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -113,11 +122,11 @@
 			children = (
 				8D0E787028BCE37C001D7371 /* Info.plist */,
 				8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */,
-				8D29A9A928DCD230001B2E80 /* DataManager.swift */,
+				8DDCE7C8292F9C7D0084150B /* Utilites */,
 				8DF35408290FF1AA0021AF6E /* Extensions */,
 				8D86973628AD434100082DA7 /* View */,
-				8DB6ED4D28ABC99B00DF0DB5 /* Model */,
 				8D0E786F28BCCF40001D7371 /* ViewModel */,
+				8DB6ED4D28ABC99B00DF0DB5 /* Model */,
 				8D0E788D28BCEA0A001D7371 /* Fonts */,
 			);
 			path = SpaceXLaunch;
@@ -127,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				8D86973028AD026400082DA7 /* RocketViewModel.swift */,
+				8DDCE7CB292FA70F0084150B /* LaunchScreenViewModel.swift */,
+				8DDCE7C6292F9AB50084150B /* DownloadImageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -155,10 +166,10 @@
 		8D86973628AD434100082DA7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8D064814292299FA00F9438A /* LoadingView.swift */,
-				8D09A68F28AAA5700014E075 /* MainTabView.swift */,
 				8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */,
+				8D09A68F28AAA5700014E075 /* MainTabView.swift */,
 				8DF3540D290FF6690021AF6E /* LaunchScreenView.swift */,
+				8D064814292299FA00F9438A /* LoadingView.swift */,
 				8DDEAE7728B7950000B5CD73 /* PreferenceView.swift */,
 				8D0648182922A2C600F9438A /* Components */,
 			);
@@ -172,6 +183,15 @@
 				8D0B4EBB291A8CB400B97148 /* ReturnedLaunchModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8DDCE7C8292F9C7D0084150B /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				8D29A9A928DCD230001B2E80 /* DataManager.swift */,
+				8DDCE7C9292F9E250084150B /* CacheManager.swift */,
+			);
+			path = Utilites;
 			sourceTree = "<group>";
 		};
 		8DF35408290FF1AA0021AF6E /* Extensions */ = {
@@ -273,16 +293,20 @@
 				8DDEAE7828B7950000B5CD73 /* PreferenceView.swift in Sources */,
 				8D29A9AA28DCD230001B2E80 /* DataManager.swift in Sources */,
 				8D86973128AD026400082DA7 /* RocketViewModel.swift in Sources */,
+				8DDCE7CA292F9E250084150B /* CacheManager.swift in Sources */,
 				8DF3540C290FF33A0021AF6E /* Fonts.swift in Sources */,
 				8D4568BD28ABC9E300838891 /* RocketModel.swift in Sources */,
 				8D09A69028AAA5700014E075 /* MainTabView.swift in Sources */,
 				8D0648172922A29E00F9438A /* CheckmarkToggleStyle.swift in Sources */,
+				8DDCE7C5292F9A610084150B /* DownloadImageView.swift in Sources */,
 				8DF3540A290FF1C10021AF6E /* PreviewProvider.swift in Sources */,
 				8D064815292299FA00F9438A /* LoadingView.swift in Sources */,
+				8DDCE7CC292FA70F0084150B /* LaunchScreenViewModel.swift in Sources */,
 				8D0B4EBC291A8CB400B97148 /* ReturnedLaunchModel.swift in Sources */,
 				8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */,
 				8D06481329226D9F00F9438A /* Formatter.swift in Sources */,
 				8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */,
+				8DDCE7C7292F9AB50084150B /* DownloadImageViewModel.swift in Sources */,
 				8DF3540E290FF6690021AF6E /* LaunchScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
