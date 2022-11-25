@@ -10,22 +10,30 @@ import Combine
 
 class LaunchScreenViewModel: ObservableObject {
     
-    @Published var launchArray: [Doc] = []
+    @Published var launchArray: [LaunchModel] = []
+    @Published var sortedLaunch: [LaunchModel] = []
     
     var manager = DataManager.shared
     var cancellables = Set<AnyCancellable>()
+    var model: RocketModel
     
-    init() {
+    init(model: RocketModel) {
+        self.model = model
         fetchLaunch()
+        sortLaunch()
     }
     
     /// sink rocketLaunchArray from FileManager with Combine
     func fetchLaunch() {
-        manager.$returnedLaunches
+        manager.$returnedLaunchData
             .sink { [weak self] launch in
                 self?.launchArray = launch
                 print("Sink OK")
             }
             .store(in: &cancellables)
+    }
+    
+    func sortLaunch() {
+        sortedLaunch = launchArray.filter { $0.rocket.rawValue == model.id }.reversed()
     }
 }

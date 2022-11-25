@@ -9,8 +9,13 @@ import SwiftUI
 
 struct LaunchScreenView: View {
     
-    @StateObject var vm = LaunchScreenViewModel()
+    @StateObject var vm: LaunchScreenViewModel
     var model: RocketModel
+    
+    init(model: RocketModel) {
+        self.model = model
+        _vm = StateObject(wrappedValue: LaunchScreenViewModel(model: model))
+    }
     
     var body: some View {
         ZStack {
@@ -18,8 +23,8 @@ struct LaunchScreenView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack {
-                    if vm.launchArray.count > 0 {
-                        ForEach(vm.launchArray) { launch in
+                    if vm.sortedLaunch.count > 0 {
+                        ForEach(vm.sortedLaunch) { launch in
                             HStack {
                                 VStack(alignment: .leading, spacing: 10) {
                                     Text("\(launch.name)")
@@ -32,23 +37,21 @@ struct LaunchScreenView: View {
                                 }
                                 Spacer()
                                 Image("Union")
-                                    .frame(width: 30, height: 30)
-//                                    .scaleEffect(1.5)
-                                    .rotationEffect(Angle(degrees: launch.success ? 0 : 180))
+                                    .scaleEffect(1.5)
                                     .overlay (
-                                        ZStack(alignment: .bottomTrailing) {
+                                        ZStack {
                                             Circle()
                                                 .frame(width: 20, height: 20)
-                                                .foregroundColor(launch.success ? .green : .red)
+                                                .foregroundColor(launch.success ?? true ? .green : .red)
                                             Image(systemName: "checkmark")
                                                 .foregroundColor(.white)
-                                                .opacity(launch.success ? 1 : 0)
+                                                .opacity(launch.success ?? true ? 1 : 0)
                                             Image(systemName: "multiply")
                                                 .foregroundColor(.white)
-                                                .opacity(launch.success ? 0 : 1)
-                                        }
-                                        , alignment: .bottomTrailing
+                                                .opacity(launch.success ?? true ? 0 : 1)
+                                        }.frame(alignment: .bottomTrailing)
                                     )
+                                    .frame(alignment: .bottomTrailing)
                             }
                             .padding(.horizontal)
                         }
@@ -66,15 +69,11 @@ struct LaunchScreenView: View {
             .navigationTitle("\(model.name)")
         }
     }
-    init(model2: RocketModel) {
-        self.model = model2
-    }
-    
 }
 
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchScreenView(model2: dev.roket)
+        LaunchScreenView(model: dev.roket)
             .environmentObject(dev.homeVM)
     }
 }

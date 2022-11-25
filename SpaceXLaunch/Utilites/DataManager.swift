@@ -13,11 +13,11 @@ class DataManager: ObservableObject {
     static var shared = DataManager()
     
     private init() {
-        downloadLaunchPOST()
+        fetchLaunch()
     }
     
-    @Published var returnedLaunches: [Doc] = []
-    @Published var returnedLaunchData: [ReturnedLaunchModel] = []
+//    @Published var returnedLaunches: [Doc] = []
+    @Published var returnedLaunchData: [LaunchModel] = []
     
     var cansellables = Set<AnyCancellable>()
     
@@ -39,38 +39,39 @@ class DataManager: ObservableObject {
     }
     
     /// Download JSON with Launch Info using POST request and Combine
-    private func downloadLaunchPOST() {
-        
-        let parameters: [String: Any] = [
-            "upcoming": false
-        ]
-        
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: parameters)
-            // create post request
-            var request = URLRequest(url: urlQuery)
-            request.httpMethod = "POST"
-            request.httpBody = jsonData
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        
-        URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap(combineHandler)
-            .decode(type: ReturnedLaunchModel.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink { (compeletion) in
-                print("Compeletion:\(compeletion)")
-            } receiveValue: { [weak self] (returnData) in
-                self?.returnedLaunchData.append(returnData)
-                self?.returnedLaunches.append(contentsOf: returnData.docs)
-            }
-            .store(in: &cansellables)
-            
-        } catch {
-            let error = error
-            print(error.localizedDescription)
-        }
-    }
+//    private func downloadLaunchPOST() {
+//
+//        let parameters: [String: Any] = [
+//            "upcoming": false
+//        ]
+//
+//
+//        do {
+//            let jsonData = try JSONSerialization.data(withJSONObject: parameters)
+//            // create post request
+//            var request = URLRequest(url: urlQuery)
+//            request.httpMethod = "POST"
+//            request.httpBody = jsonData
+//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//
+//
+//        URLSession.shared.dataTaskPublisher(for: request)
+//            .tryMap(combineHandler)
+//            .decode(type: ReturnedLaunchModel.self, decoder: JSONDecoder())
+//            .receive(on: DispatchQueue.main)
+//            .sink { (compeletion) in
+//                print("Compeletion:\(compeletion)")
+//            } receiveValue: { [weak self] (returnData) in
+//                self?.returnedLaunchData.append(returnData)
+//                self?.returnedLaunches.append(contentsOf: returnData.docs)
+//            }
+//            .store(in: &cansellables)
+//
+//        } catch {
+//            let error = error
+//            print(error.localizedDescription)
+//        }
+//    }
     
     /// Regular URLResponse handler
     private func responseHandler(data: Data?, response: URLResponse?) throws -> [RocketModel]? {
@@ -94,19 +95,19 @@ class DataManager: ObservableObject {
         return compeletion.data
     }
     
-//        func fetchRocket() {
-//
-//            URLSession.shared.dataTaskPublisher(for: urlLaunch)
-//                .subscribe(on: DispatchQueue.global(qos: .background))
-//                .receive(on: DispatchQueue.main)
-//                .tryMap(combineHandler)
-//                .decode(type: [ReturnedLaunchModel].self, decoder: JSONDecoder())
-//                .sink { (compeletion) in
-//                    print("Compeletion:\(compeletion)")
-//                } receiveValue: { [weak self] (result) in
-//                    self?.decodedLaunch = result
-//                }
-//                .store(in: &cansellables)
-//        }
+        func fetchLaunch() {
+
+            URLSession.shared.dataTaskPublisher(for: urlLaunch)
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .receive(on: DispatchQueue.main)
+                .tryMap(combineHandler)
+                .decode(type: [LaunchModel].self, decoder: JSONDecoder())
+                .sink { (compeletion) in
+                    print("Compeletion:\(compeletion)")
+                } receiveValue: { [weak self] (result) in
+                    self?.returnedLaunchData = result
+                }
+                .store(in: &cansellables)
+        }
 
 }

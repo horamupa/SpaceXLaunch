@@ -26,7 +26,7 @@ struct RoketView: View {
                         MainInfo(model: model)
                         
                         NavigationLink {
-                            LaunchScreenView(model2: model)
+                            LaunchScreenView(model: model)
                                 .environmentObject(viewModel)
                         } label: {
                             Text("Посмотреть запуски")
@@ -65,27 +65,40 @@ struct RoketView_Previews: PreviewProvider {
 
 extension RoketView {
     private var rocketImage: some View {
-        
-        DownloadImageView(url: model.flickrImages.first!)
-            .scaledToFill()
-            .frame(minHeight: 320)
-//        AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
-//                    image
-//                        .resizable()
-//                        .scaledToFill()
-//                        .cornerRadius(16)
-//                }
-//            placeholder: {
-//                ZStack {
-//                    Image("Union")
-//                        .resizable()
-//                        .padding()
-//                        .frame(width: 150, height: 150)
-//                    Text("Image loading...")
-//                        .foregroundColor(.white)
-//                        .font(.labGrotesque(.regular, size: 16))
-//                }
-//        }
+        ZStack {
+            if (model.flickrImages.first != nil) {
+                DownloadImageView(url: model.flickrImages.first!)
+                    .scaledToFill()
+                    .frame(minHeight: 320)
+            } else {
+                ZStack {
+                    Image("Union")
+                        .resizable()
+                        .padding()
+                        .frame(width: 150, height: 150)
+                    Text("Image loading...")
+                        .foregroundColor(.white)
+                        .font(.labGrotesque(.regular, size: 16))
+                }
+            }
+            //        AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
+            //                    image
+            //                        .resizable()
+            //                        .scaledToFill()
+            //                        .cornerRadius(16)
+            //                }
+            //            placeholder: {
+            //                ZStack {
+            //                    Image("Union")
+            //                        .resizable()
+            //                        .padding()
+            //                        .frame(width: 150, height: 150)
+            //                    Text("Image loading...")
+            //                        .foregroundColor(.white)
+            //                        .font(.labGrotesque(.regular, size: 16))
+            //                }
+            //        }
+        }
     }
 }
 
