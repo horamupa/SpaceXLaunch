@@ -126,10 +126,10 @@
 				8D09A68D28AAA5700014E075 /* SpaceXLaunchApp.swift */,
 				8DDCE7C8292F9C7D0084150B /* Utilites */,
 				8DF35408290FF1AA0021AF6E /* Extensions */,
+				8D0E788D28BCEA0A001D7371 /* Fonts */,
 				8D86973628AD434100082DA7 /* View */,
 				8D0E786F28BCCF40001D7371 /* ViewModel */,
 				8DB6ED4D28ABC99B00DF0DB5 /* Model */,
-				8D0E788D28BCEA0A001D7371 /* Fonts */,
 			);
 			path = SpaceXLaunch;
 			sourceTree = "<group>";

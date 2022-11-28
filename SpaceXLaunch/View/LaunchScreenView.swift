@@ -37,7 +37,9 @@ struct LaunchScreenView: View {
                                 }
                                 Spacer()
                                 Image("Union")
-                                    .scaleEffect(1.5)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 45, height: 45)
                                     .overlay (
                                         ZStack {
                                             Circle()
@@ -50,8 +52,7 @@ struct LaunchScreenView: View {
                                                 .foregroundColor(.white)
                                                 .opacity(launch.success ?? true ? 0 : 1)
                                         }.frame(alignment: .bottomTrailing)
-                                    )
-                                    .frame(alignment: .bottomTrailing)
+                                        , alignment: .bottomTrailing)
                             }
                             .padding(.horizontal)
                         }
