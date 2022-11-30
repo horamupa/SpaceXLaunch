@@ -81,23 +81,6 @@ extension RoketView {
                         .font(.labGrotesque(.regular, size: 16))
                 }
             }
-            //        AsyncImage(url: URL(string: model.flickrImages.first!)) { image in
-            //                    image
-            //                        .resizable()
-            //                        .scaledToFill()
-            //                        .cornerRadius(16)
-            //                }
-            //            placeholder: {
-            //                ZStack {
-            //                    Image("Union")
-            //                        .resizable()
-            //                        .padding()
-            //                        .frame(width: 150, height: 150)
-            //                    Text("Image loading...")
-            //                        .foregroundColor(.white)
-            //                        .font(.labGrotesque(.regular, size: 16))
-            //                }
-            //        }
         }
     }
 }
@@ -123,17 +106,21 @@ struct Title: View {
         }
         .padding(.top, 30)
         .padding(.horizontal, 20)
-//        .font(.system(size: 30))
     }
 }
 
 
-
-
-struct HScrollInfo: View {
+struct HScrollGeneric: View {
     
-    var textUp: String
-    var textDown: String
+    var preference: Bool = true
+    var model: RocketModel
+    var whatToShow: Int
+    
+    init(preference: Bool, model: RocketModel, whatToShow: Int) {
+        self.preference = preference
+        self.model = model
+        self.whatToShow = whatToShow
+    }
     
     var body: some View {
         ZStack {
@@ -141,8 +128,46 @@ struct HScrollInfo: View {
             RoundedRectangle(cornerRadius: 32)
                 .fill(Color(#colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)))
                 .frame(width: 96, height: 96)
-                
             .overlay {
+                if whatToShow == 0 {
+                    HScrollInfo(
+                        textUp: preference ? model.height.feet.formatter1dec() : model.height.meters.formatter1dec(),
+                        textDown: "Высота, \(preference ? "ft" : "m")")
+                }
+                if whatToShow == 1 {
+                    HScrollInfo(
+                        textUp: preference ?
+                        model.diameter.feet.formatter1dec() :
+                            model.diameter.meters.formatter1dec(),
+                        textDown: "Диаметр, \(preference ? "ft" : "m")")
+                }
+                if whatToShow == 2 {
+                    HScrollInfo(
+                        textUp: preference ?
+                        model.mass.lb.formatter3dec() :
+                            model.mass.kg.formatter3dec(),
+                        textDown: "Масса, \(preference ? "lb" : "kg")")
+                }
+                else if whatToShow == 3 {
+                    HScrollInfo(
+                        textUp: preference ?
+                        model.payloadWeights[0].lb.formatter3dec() :
+                            model.payloadWeights[0].kg.formatter3dec() ,
+                        textDown: "Нагрузка, \(preference ? "lb" : "kg")")
+                }
+                
+            }
+            
+        }
+    }
+}
+
+struct HScrollInfo: View {
+    
+    var textUp: String
+    var textDown: String
+    
+    var body: some View {
                 VStack(spacing: 5) {
                     Text("\(textUp)")
                         .font(.custom("LabGrotesque-Bold", size: 16))
@@ -156,9 +181,6 @@ struct HScrollInfo: View {
                             .multilineTextAlignment(.center)
                     }
                 }
-            }
-            
-        }
     }
 }
 
@@ -173,24 +195,27 @@ struct HScroll: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                HScrollInfo(
-                    textUp: viewModel.preferenceArray[0] ? model.height.feet.formatter1dec() : model.height.meters.formatter1dec(),
-                    textDown: "Высота, \(viewModel.preferenceArray[0] ? "ft" : "m")")
-                HScrollInfo(
-                    textUp: viewModel.preferenceArray[1] ?
-                        model.diameter.feet.formatter1dec() :
-                        model.diameter.meters.formatter1dec(),
-                    textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "ft" : "m")")
-                HScrollInfo(
-                    textUp: viewModel.preferenceArray[2] ?
-                        model.mass.lb.formatter3dec() :
-                        model.mass.kg.formatter3dec(),
-                    textDown: "Масса, \(viewModel.preferenceArray[2] ? "lb" : "kg")")
-                HScrollInfo(
-                    textUp: viewModel.preferenceArray[3] ?
-                    model.payloadWeights[0].lb.formatter3dec() :
-                        model.payloadWeights[0].kg.formatter3dec() ,
-                    textDown: "Нагрузка, \(viewModel.preferenceArray[3] ? "lb" : "kg")")
+                ForEach(0..<4) { item in
+                    HScrollGeneric(preference: viewModel.preferenceArray[item], model: model, whatToShow: item)
+                }
+//                HScrollInfo(
+//                    textUp: viewModel.preferenceArray[0] ? model.height.feet.formatter1dec() : model.height.meters.formatter1dec(),
+//                    textDown: "Высота, \(viewModel.preferenceArray[0] ? "ft" : "m")")
+//                HScrollInfo(
+//                    textUp: viewModel.preferenceArray[1] ?
+//                        model.diameter.feet.formatter1dec() :
+//                        model.diameter.meters.formatter1dec(),
+//                    textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "ft" : "m")")
+//                HScrollInfo(
+//                    textUp: viewModel.preferenceArray[2] ?
+//                        model.mass.lb.formatter3dec() :
+//                        model.mass.kg.formatter3dec(),
+//                    textDown: "Масса, \(viewModel.preferenceArray[2] ? "lb" : "kg")")
+//                HScrollInfo(
+//                    textUp: viewModel.preferenceArray[3] ?
+//                    model.payloadWeights[0].lb.formatter3dec() :
+//                        model.payloadWeights[0].kg.formatter3dec() ,
+//                    textDown: "Нагрузка, \(viewModel.preferenceArray[3] ? "lb" : "kg")")
             }
             .background(.black)
             .padding()
