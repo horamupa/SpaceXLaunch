@@ -2,7 +2,7 @@ import SwiftUI
 
 
 
-struct RoketView: View {
+struct RocketView: View {
     
     @EnvironmentObject var viewModel: RocketViewModel
     @State var isLaunch: Bool = false
@@ -33,7 +33,7 @@ struct RoketView: View {
                                 .font(.labGrotesque(.medium, size: 20))
                                 .frame(height: 55)
                                 .frame(maxWidth: .infinity)
-                                .background(.secondary)
+                                .background(Color(#colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)))
                                 .cornerRadius(10)
                                 .padding()
                                 .padding(.horizontal)
@@ -57,13 +57,13 @@ struct RoketView_Previews: PreviewProvider {
     static var viewModel = RocketViewModel()
     var model = RocketModel.share
     static var previews: some View {
-        RoketView(model: RocketModel.share)
+        RocketView(model: RocketModel.share)
             .environmentObject(viewModel)
     }
         
 }
 
-extension RoketView {
+extension RocketView {
     private var rocketImage: some View {
         ZStack {
             if (model.flickrImages.first != nil) {
@@ -198,24 +198,6 @@ struct HScroll: View {
                 ForEach(0..<4) { item in
                     HScrollGeneric(preference: viewModel.preferenceArray[item], model: model, whatToShow: item)
                 }
-//                HScrollInfo(
-//                    textUp: viewModel.preferenceArray[0] ? model.height.feet.formatter1dec() : model.height.meters.formatter1dec(),
-//                    textDown: "Высота, \(viewModel.preferenceArray[0] ? "ft" : "m")")
-//                HScrollInfo(
-//                    textUp: viewModel.preferenceArray[1] ?
-//                        model.diameter.feet.formatter1dec() :
-//                        model.diameter.meters.formatter1dec(),
-//                    textDown: "Диаметр, \(viewModel.preferenceArray[1] ? "ft" : "m")")
-//                HScrollInfo(
-//                    textUp: viewModel.preferenceArray[2] ?
-//                        model.mass.lb.formatter3dec() :
-//                        model.mass.kg.formatter3dec(),
-//                    textDown: "Масса, \(viewModel.preferenceArray[2] ? "lb" : "kg")")
-//                HScrollInfo(
-//                    textUp: viewModel.preferenceArray[3] ?
-//                    model.payloadWeights[0].lb.formatter3dec() :
-//                        model.payloadWeights[0].kg.formatter3dec() ,
-//                    textDown: "Нагрузка, \(viewModel.preferenceArray[3] ? "lb" : "kg")")
             }
             .background(.black)
             .padding()
@@ -224,17 +206,22 @@ struct HScroll: View {
     }
 }
 
-struct RegularInfoView: View {
+struct RegularInfoView<Content:View>: View {
     
-    @State var textLeft: String
-    @State var textRight: String
+    var text: String
+    var content: Content
+    
+    init(text: String, @ViewBuilder content: () -> Content) {
+        self.text = text
+        self.content = content()
+    }
     
     var body: some View {
         
         HStack {
-            Text(textLeft)
+            Text(text)
             Spacer()
-            Text(textRight)
+            content
         }
         .font(.custom("LabGrotesque-Regular", size: 16))
     }
@@ -242,7 +229,6 @@ struct RegularInfoView: View {
     
 }
 
-#warning("transfer to components")
 struct MainInfo: View {
     
     @State var model: RocketModel
@@ -251,76 +237,64 @@ struct MainInfo: View {
     var body: some View {
         VStack(spacing: 30) {
             VStack(alignment: .leading, spacing: 16) {
-                HStack {
-                    Text("Первый запуск")
-                    Spacer()
+                RegularInfoView(text: "Первый запуск") {
                     Text(dateFormat())
                 }
-                RegularInfoView(textLeft: "Страна", textRight: model.country)
-                RegularInfoView(textLeft: "Стоимость запуска", textRight: String(model.costPerLaunch.formatUsingAbbrevation()))
-                
+                RegularInfoView(text: "Страна") {
+                    Text(model.country)
+                }
+                RegularInfoView(text: "Стоимость запуска") {
+                    Text(String(model.costPerLaunch.formatUsingAbbrevation()))
+                }
             }
-            .font(.custom("LabGrotesque-Regular", size: 16))
-            .padding(.horizontal, 20)
             
             VStack(alignment: .leading, spacing: 15) {
                 Text("ПЕРВАЯ СТУПЕНЬ")
                     .font(.custom("LabGrotesque-Bold", size: 16))
-                RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.firstStage.engines)")
-                HStack {
-                    Text("Количество топлива")
-                    Spacer()
+                RegularInfoView(text: "Количество двигателей") {
+                    Text("\(model.firstStage.engines)")
+                }
+                RegularInfoView(text: "Количество топлива") {
                     HStack {
                         Text("\(model.firstStage.fuelAmountTons.formatted())")
                         Text("ton")
                             .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
                     }
-                    .font(.custom("LabGrotesque-Bold", size: 16))
                 }
-                HStack {
-                    Text("Время сгорания в секундах")
-                    Spacer()
+                RegularInfoView(text: "Время сгорания в секундах") {
                     HStack {
                         Text("\(model.firstStage.burnTimeSEC ?? 100)")
                         Text("sec")
                             .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
                     }
-                    .font(.custom("LabGrotesque-Bold", size: 16))
                 }
             }
-            .foregroundColor(.white)
-            .font(.custom("LabGrotesque-Regular", size: 16))
-            .padding(.horizontal, 20)
             
             VStack(alignment: .leading, spacing: 15) {
                 Text("ВТОРАЯ СТУПЕНЬ")
                     .font(.custom("LabGrotesque-Bold", size: 16))
-                RegularInfoView(textLeft: "Количество двигателей", textRight: "\(model.secondStage.engines)")
-                HStack {
-                    Text("Количество топлива")
-                    Spacer()
+                RegularInfoView(text: "Количество двигателей") {
+                    Text("\(model.secondStage.engines)")
+                }
+                RegularInfoView(text: "Количество топлива") {
                     HStack {
                         Text("\(model.secondStage.fuelAmountTons.formatted())")
                         Text("ton")
                             .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
                     }
-                    .font(.custom("LabGrotesque-Bold", size: 16))
                 }
-                HStack {
-                    Text("Время сгорания в секундах")
-                    Spacer()
+                RegularInfoView(text: "Время сгорания в секундах") {
                     HStack {
                         Text("\(model.secondStage.burnTimeSEC ?? 100)")
                         Text("sec")
                             .foregroundColor(Color(#colorLiteral(red: 0.56, green: 0.56, blue: 0.56, alpha: 1)))
                     }
-                    .font(.custom("LabGrotesque-Bold", size: 16))
                 }
             }
             .foregroundColor(.white)
             .font(.custom("LabGrotesque-Regular", size: 16))
-            .padding(.horizontal, 20)
         }
+        .padding(.horizontal, 20)
     }
     
     func dateFormat() -> String {

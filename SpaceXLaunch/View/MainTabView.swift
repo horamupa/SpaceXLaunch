@@ -17,7 +17,7 @@ struct MainTabView: View {
         if viewModel.isLoaded {
             TabView {
                 ForEach(viewModel.roketArray, id: \.id) { model in
-                    RoketView(model: model)
+                    RocketView(model: model)
                         .tag(String(model.name))
                 }
             }

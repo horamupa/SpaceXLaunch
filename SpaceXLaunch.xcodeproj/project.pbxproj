@@ -32,7 +32,7 @@
 		8D4568BD28ABC9E300838891 /* RocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4568BC28ABC9E300838891 /* RocketModel.swift */; };
 		8D81D0D52930D0CA0081AF8B /* LaunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81D0D42930D0CA0081AF8B /* LaunchModel.swift */; };
 		8D86973128AD026400082DA7 /* RocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D86973028AD026400082DA7 /* RocketViewModel.swift */; };
-		8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */; };
+		8DB6ED4C28ABB9AC00DF0DB5 /* RocketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6ED4B28ABB9AC00DF0DB5 /* RocketView.swift */; };
 		8DDCE7C5292F9A610084150B /* DownloadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7C4292F9A610084150B /* DownloadImageView.swift */; };
 		8DDCE7C7292F9AB50084150B /* DownloadImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7C6292F9AB50084150B /* DownloadImageViewModel.swift */; };
 		8DDCE7CA292F9E250084150B /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCE7C9292F9E250084150B /* CacheManager.swift */; };
@@ -71,7 +71,7 @@
 		8D4568BC28ABC9E300838891 /* RocketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModel.swift; sourceTree = "<group>"; };
 		8D81D0D42930D0CA0081AF8B /* LaunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModel.swift; sourceTree = "<group>"; };
 		8D86973028AD026400082DA7 /* RocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewModel.swift; sourceTree = "<group>"; };
-		8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoketView.swift; sourceTree = "<group>"; };
+		8DB6ED4B28ABB9AC00DF0DB5 /* RocketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RocketView.swift; sourceTree = "<group>"; };
 		8DDCE7C4292F9A610084150B /* DownloadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageView.swift; sourceTree = "<group>"; };
 		8DDCE7C6292F9AB50084150B /* DownloadImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageViewModel.swift; sourceTree = "<group>"; };
 		8DDCE7C9292F9E250084150B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		8D86973628AD434100082DA7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8DB6ED4B28ABB9AC00DF0DB5 /* RoketView.swift */,
+				8DB6ED4B28ABB9AC00DF0DB5 /* RocketView.swift */,
 				8D09A68F28AAA5700014E075 /* MainTabView.swift */,
 				8DF3540D290FF6690021AF6E /* LaunchScreenView.swift */,
 				8D064814292299FA00F9438A /* LoadingView.swift */,
@@ -309,7 +309,7 @@
 				8D0B4EBC291A8CB400B97148 /* ReturnedLaunchModel.swift in Sources */,
 				8D09A68E28AAA5700014E075 /* SpaceXLaunchApp.swift in Sources */,
 				8D06481329226D9F00F9438A /* Formatter.swift in Sources */,
-				8DB6ED4C28ABB9AC00DF0DB5 /* RoketView.swift in Sources */,
+				8DB6ED4C28ABB9AC00DF0DB5 /* RocketView.swift in Sources */,
 				8DDCE7C7292F9AB50084150B /* DownloadImageViewModel.swift in Sources */,
 				8DF3540E290FF6690021AF6E /* LaunchScreenView.swift in Sources */,
 			);
